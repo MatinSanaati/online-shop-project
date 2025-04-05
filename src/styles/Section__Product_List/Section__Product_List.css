@@ -1,0 +1,3 @@
+.section__product_list::-webkit-scrollbar {
+    display: none;
+}

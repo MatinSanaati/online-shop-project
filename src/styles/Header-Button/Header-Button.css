@@ -1,0 +1,208 @@
+.btn__login_signin {
+    transition: all ease-in-out .3s;
+    display: flex;
+    align-items: center;
+}
+
+.btn__login_signin:hover {
+    cursor: pointer;
+}
+
+.icon__login_signin {
+    transition: all ease-in-out .3s;
+    margin-left: .3rem;
+}
+
+.btn__login_signin:hover .icon__login_signin {
+    margin-left: 1.7rem;
+}
+
+.icon__card_header_left {
+    position: relative;
+    display: inline-flex;
+    /* برای نمایش آیتم‌ها در کنار هم */
+    align-items: center;
+    /* برای تراز کردن عمودی */
+}
+
+.icon__card_header_left::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -50%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 70%;
+    background-color: #ddddddad;
+}
+
+/* تعداد کالاها در سبد خرید */
+.icon__card_header_left .icon__card_count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+}
+
+/* استایل برای آیکون */
+.icon__card_header_left .ShoppingCart {
+    position: relative;
+    z-index: 1;
+    /* برای اطمینان از نمایش آیکون بالای تعداد */
+    margin-left: 25px;
+    /* برای ایجاد فاصله بین عدد و آیکون */
+}
+
+/* Navigation__Bar */
+.menu li {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity .3s ease, transform 0.3s ease;
+}
+
+nav:hover .menu li {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+nav:hover .menu li:nth-child(1) {
+    transition-delay: .1s;
+}
+
+nav:hover .menu li:nth-child(2) {
+    transition-delay: .3s;
+}
+
+nav:hover .menu li:nth-child(3) {
+    transition-delay: .5s;
+}
+
+nav:hover .menu li:nth-child(4) {
+    transition-delay: .7s;
+}
+
+nav:hover .menu li:nth-child(5) {
+    transition-delay: .9s;
+}
+
+nav:hover .menu li:nth-child(6) {
+    transition-delay: .11s;
+}
+
+nav:hover .menu li:nth-child(7) {
+    transition-delay: .13s;
+}
+
+nav:hover .menu li:nth-child(8) {
+    transition-delay: .15s;
+}
+
+nav:hover .menu li:nth-child(9) {
+    transition-delay: .17s;
+}
+
+/* Animation__Hover */
+/* نوار ناوبری وقتی که اسکرول می‌شود */
+nav {
+    transition: top 0.3s ease-in-out, position 0.3s ease-in-out;
+}
+
+/* در صورت اسکرول شدن */
+nav.fixed {
+    position: fixed;
+    top: 50px;
+    right: 0;
+    z-index: -1;
+}
+
+nav button,
+nav .link {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 4px;
+    overflow: hidden;
+}
+
+nav button::after,
+nav .link::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, blue, transparent);
+    transition: width 0.4s ease-in-out, left 0.4s ease-in-out;
+    transform: scaleX(0);
+    transform-origin: center;
+}
+
+nav button:hover::after,
+nav .link:hover::after {
+    width: 100%;
+    left: 0;
+    transform: scaleX(1);
+    animation: super-pulse .7s ease-in-out;
+}
+
+@keyframes super-pulse {
+    0% {
+        width: 0;
+        left: 50%;
+        opacity: 0;
+    }
+
+    30% {
+        width: 140%;
+        left: -20%;
+        opacity: 1;
+    }
+
+    50% {
+        width: 90%;
+        left: 5%;
+        background: linear-gradient(90deg, transparent, red, transparent);
+    }
+
+    70% {
+        width: 110%;
+        left: -5%;
+        background: linear-gradient(90deg, transparent, purple, transparent);
+    }
+
+    100% {
+        width: 100%;
+        left: 0;
+        opacity: 1;
+        background: linear-gradient(90deg, transparent, blue, transparent);
+    }
+}
+
+/* برای انیمیشن بک‌گراند بلور */
+@keyframes blurIn {
+    0% {
+        backdrop-filter: blur(0px);
+    }
+
+    100% {
+        backdrop-filter: blur(10px);
+    }
+}
+
+.animate-blur-in {
+    animation: blurIn .5s ease-in-out forwards;
+}
+
+@media screen and (max-width: 770px) {
+    .icon__card_header_left::after {
+        content: none;
+    }
+}

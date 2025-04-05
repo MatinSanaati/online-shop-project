@@ -1,0 +1,62 @@
+/* اضافه کردن انیمیشن به کلاس animate-fade-in */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn .5s ease-in-out;
+}
+
+/* Style__Scroll--Bar */
+.scroll-container {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 123, 255, 0.7) transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+/* اسکرول‌بار برای مرورگرهای وب‌کیت (Chrome, Edge, Safari) */
+.scroll-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 10px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #007bff, #ff00ff);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+    transition: background 0.3s ease-in-out;
+}
+
+.scroll-container::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #ff00ff, #007bff);
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.7);
+}
+
+/* انیمیشن هنگام نمایش اسکرول */
+@keyframes fadeInScroll {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.scroll-container {
+    animation: fadeInScroll 0.5s ease-in-out;
+}

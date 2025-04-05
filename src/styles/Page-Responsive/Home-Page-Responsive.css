@@ -1,0 +1,40 @@
+/* 1200px */
+@media screen and (max-width: 1100px) {
+    .section__header_top {
+        display: none;
+    }
+}
+
+/* 900px */
+@media screen and (max-width: 900px) {
+
+    .menu_nav_bar,
+    .icon__login_signin,
+    .login-text {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 760px) {
+    .footer {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1.7rem;
+    }
+
+    .footer_content {
+        gap: 1.7rem;
+    }
+
+    .section__product_list {
+        display: flex;
+        flex-direction: column;
+        transform: scale(.7);
+    }
+
+    .shopping_by_category {
+        transform: scale(.7);
+    }
+}

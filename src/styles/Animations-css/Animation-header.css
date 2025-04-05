@@ -1,0 +1,85 @@
+/* Start__Animation__Header__Type_hi */
+/* انیمیشن حرکت کرسر از راست به چپ */
+@keyframes moveCursor {
+    0% {
+        left: 100%;
+        /* کرسر از خارج از صفحه شروع می‌شود */
+    }
+
+    100% {
+        left: 0%;
+        /* کرسر به موقعیت خودش می‌رسد */
+    }
+}
+
+/* انیمیشن تایپ شدن متن */
+@keyframes typing {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+/* انیمیشن حرکت باکس به سمت راست با چرخش */
+@keyframes moveToRight {
+    0% {
+        right: 50%;
+        transform: rotate(0deg);
+    }
+
+    30% {
+        right: 50%;
+        transform: rotate(-10deg);
+    }
+
+    70% {
+        right: 5%;
+        transform: rotate(10deg);
+    }
+
+    80% {
+        right: 5%;
+        transform: rotate(10deg);
+    }
+
+    90% {
+        right: 20%;
+        transform: rotate(-360deg);
+    }
+
+    100% {
+        right: 20%;
+        transform: rotate(-360deg);
+    }
+}
+
+/* انیمینش پرنت p */
+/* انیمیشن نمایش پرنت */
+@keyframes showBox {
+    0% {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* انیمیشن چرخش my__shop */
+@keyframes growAndRotate {
+    0% {
+        transform: scale(0.5) rotate(0deg);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1) rotate(360deg);
+        opacity: 1;
+    }
+}
+
+/* End__Animation__Header__Type_hi */

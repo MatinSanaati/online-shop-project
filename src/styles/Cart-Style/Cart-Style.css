@@ -1,0 +1,28 @@
+.cart_header::after {
+    content: '';
+    position: absolute;
+    top: 43%;
+    right: 44.30%;
+    width: 12%;
+    height: 3px;
+    border-radius: 50%;
+    background-color: rgb(236, 118, 118);
+    font-weight: bold;
+}
+
+.slide-up {
+    animation: slideUp 1s ease-out forwards;
+}
+
+/* انیمیشن از پایین به بالا */
+@keyframes slideUp {
+    0% {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

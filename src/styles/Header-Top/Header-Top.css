@@ -1,0 +1,50 @@
+.section__header_top {
+    height: 2.5rem;
+    position: relative;
+}
+
+.box__text_hi {
+    right: 50%;
+    z-index: 1;
+    position: absolute;
+    overflow: hidden;
+    transform: rotate(0deg) translate(0, 0);
+    white-space: nowrap;
+    animation: moveToRight 3s cubic-bezier(0.25, 1, 0.5, 1) forwards 6s;
+    /* ۵ ثانیه زمان، نرمی با cubic-bezier، توقف در فریم آخر، تاخیر ۲ ثانیه */
+}
+
+.text__hi {
+    color: black;
+    position: relative;
+    display: inline-block;
+    animation: typing 4s steps(30, end) forwards,
+        moveCursor 4s linear forwards;
+}
+
+.box__parent_p {
+    z-index: 0;
+    right: 30%;
+    text-align: center;
+    position: relative;
+    max-height: 2rem;
+    overflow: auto;
+    opacity: 0;
+    transform: translateY(100%);
+    animation: showBox 1s ease-in forwards 10s;
+}
+
+.box__parent_p::-webkit-scrollbar {
+    display: none;
+}
+
+.box__text__my_shop {
+    position: absolute;
+    left: 20%;
+    transform: scale(0.5) rotate(0deg);
+    opacity: 0;
+    /* انیمیشن */
+    animation: growAndRotate 1.5s ease-out forwards;
+    animation-delay: 3s;
+    /* تاخیر برای لود کامل صفحه */
+}

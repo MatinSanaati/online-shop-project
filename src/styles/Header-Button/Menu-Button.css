@@ -1,0 +1,27 @@
+.menu__button {
+    display: none;
+}
+
+.icon__login--signin {
+    display: none;
+}
+
+@media screen and (max-width: 900px) {
+    .menu__button {
+        display: inline;
+    }
+
+
+    .icon__login--signin {
+        display: inline-block;
+    }
+}
+
+@media screen and (max-width: 770px) {
+
+    .icon__home_header_right,
+    .icon__card_header_left {
+        position: fixed;
+        bottom: 7px;
+    }
+}
