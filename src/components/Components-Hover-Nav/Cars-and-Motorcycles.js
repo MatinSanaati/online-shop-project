@@ -47,9 +47,9 @@ export const CarsAndMotorcycles = () => {
     // Render
     return (
         <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: 30 }}
+            initial={{ opacity: 0, scale: .8, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 2, ease: "easeOut" }}
+            transition={{ duration: 1, ease: "easeOut" }}
             className="flex flex-col items-center mt-10 h-full min-h-screen"
         >
             {/* پیام موفقیت */}

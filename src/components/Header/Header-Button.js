@@ -1,5 +1,4 @@
 // Style
-import '../../styles/Page-Responsive/Home-Page-Responsive.css';
 import '../../styles/Style-Blur-Box-Result/Style-Blur-Box-Result.css';
 import '../../styles/Header-Button/Header-Button.css';
 
@@ -25,6 +24,7 @@ export const HeaderButton = ({ setIsSearching, setSearchFinished, setSelectedCom
     const [hideNav, setHideNav] = useState(false);
     const [isButtonClicked, setIsButtonClicked] = useState(false);
     const [cartItems, setCartItems] = useState([]); // وضعیت سبد خرید
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     // تابع برای دریافت سبد خرید از localStorage
     const updateCart = () => {
@@ -111,7 +111,7 @@ export const HeaderButton = ({ setIsSearching, setSearchFinished, setSelectedCom
     };
 
     return (
-        <div className="w-full relative">
+        <div className="header_button w-full relative border-b-2">
             {isFocused && (
                 <div
                     className="fixed inset-0 bg-black/50 z-10 animate-blur-in"
@@ -119,25 +119,25 @@ export const HeaderButton = ({ setIsSearching, setSearchFinished, setSelectedCom
                 ></div>
             )}
 
-            <div className="flex flex-row items-center justify-between gap-6 p-6 bg-white w-full border-b-2 relative z-30">
-                <div className="flex flex-row items-center gap-4">
+            <div className="flex flex-row items-center justify-between gap-6 p-6 w-full relative z-30">
+                <div className="section_right flex flex-row items-center gap-4">
 
                     {/* Menu_Nav_Bar */}
-                    <MenuButton />
+                    <MenuButton onClick={() => setIsMobileMenuOpen(prev => !prev)} />
 
-                    <div className="icon__home_header_right bg-white p-2.5 shadow-md rounded-lg">
+                    <div className="icon__home_header_right p-2.5 shadow-md rounded-lg">
                         <Link to="/" className="text-blue-500 hover:underline">
                             <Home className="w-5 h-5 text-blue-500" />
                         </Link>
                     </div>
-                    <div className="flex items-center gap-3 mr-2 rounded-lg p-1 border-transparent bg-clip-padding bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
+                    <div className="search_container flex items-center gap-3 mr-2 rounded-lg p-1 border-transparent bg-clip-padding bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
                         <button className="transition-all duration-300 ease-out transform hover:scale-110 hover:text-blue-300 text-white rounded-full"
                             onClick={handleSearchClick}>
-                            <Search className="w-8 h-8 mx-2" />
+                            <Search className="icon_search w-8 h-8 mx-2" />
                         </button>
-                        <div className="relative w-96 z-40">
+                        <div className="input relative w-96 z-40">
                             <input
-                                className="rounded-lg p-2 w-full text-gray-900 font-bold bg-white border-none outline-none border-b-2 border-transparent focus:border-green-500 focus:ring-0 transition-all duration-300"
+                                className="search_input rounded-lg p-2 w-full text-gray-900 font-bold bg-white border-none outline-none border-b-2 border-transparent focus:border-green-500 focus:ring-0 transition-all duration-300"
                                 value={text}
                                 onChange={handleChange}
                                 placeholder="جستجو کنید . . . !"
@@ -156,7 +156,7 @@ export const HeaderButton = ({ setIsSearching, setSearchFinished, setSelectedCom
                             )}
 
                             {isFocused && (
-                                <div className="scroll-container absolute top-full w-full mt-2 bg-white shadow-md z-10 animate-fade-in">
+                                <div className="scroll-container absolute top-full w-full mt-2 bg-white shadow-md rounded-md z-10 animate-fade-in">
                                     {text ? (
                                         <SearchInputResult
                                             searchQuery={text}
@@ -178,7 +178,7 @@ export const HeaderButton = ({ setIsSearching, setSearchFinished, setSelectedCom
                     <Link to="/Login-Form">
                         <button className="btn__login_signin bg-blue-500 flex flex-grow items-center justify-center text-white px-4 py-2 ml-7 rounded-lg hover:bg-blue-600">
                             <LogIn className="icon__login_signin w-5 h-5 ml-2" />
-                            <span className='login-text'>
+                            <span className='login_text'>
                                 ثبت نام | ورود
                             </span>
                             <FaUser className="icon__login--signin w-5 h-5" />
@@ -196,7 +196,7 @@ export const HeaderButton = ({ setIsSearching, setSearchFinished, setSelectedCom
                 </div>
             </div>
 
-            <nav className={`menu_nav_bar w-full bg-gray-100 absolute border-t-2 p-4 flex items-center transition-all duration-300 z-20 ${hideNav ? 'opacity-0 -translate-y-10 pointer-events-none' : 'opacity-100 translate-y-0'}`}>
+            <nav className={`menu_nav_bar w-full bg-slate-100 absolute p-2 flex items-center transition-all duration-300 z-20 ${hideNav ? 'opacity-0 -translate-y-10 pointer-events-none' : 'opacity-100 translate-y-0'}`}>
                 <button className="relative">دسته بندی کالا ها</button>
                 <ul className="flex justify-end items-center gap-9 my-0 mx-10 top-5 right-4 menu">
                     <li><Link to="/Electronics" element={<Electronics />} className="link text-gray-700 hover:text-blue-500">لپتاپ , موبایل , تبلت , کامپیوتر</Link></li>
@@ -205,6 +205,63 @@ export const HeaderButton = ({ setIsSearching, setSearchFinished, setSelectedCom
                     <li><Link to="/Stationery" element={<Stationery />} className="link text-gray-700 hover:text-blue-500">لوازم تحریر</Link></li>
                 </ul>
             </nav>
+
+            {/* Mobile Menu */}
+            {isMobileMenuOpen && (
+                <div className="menu_nav_bar--mobile animate-slide-in fixed top-0 right-0 w-1/4 h-screen bg-white shadow-lg z-50 p-6 flex flex-col gap-6 transition-all duration-300 md:hidden">
+                    <button
+                        className="self-end text-red-500 font-bold text-xl p-2 rounded-md shadow-md transition-transform duration-300 hover:scale-110"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                        ×
+                    </button>
+
+                    <Link
+                        to="/"
+                        className="flex items-start justify-start mt-7 gap-2 text-blue-500 transition-transform duration-300 hover:scale-105"
+                    >
+                        <Home className="w-5 h-5" />
+                    </Link>
+
+                    <Link
+                        to="/Cart"
+                        className="flex items-start justify-start mt-5 gap-2 text-blue-500 relative transition-transform duration-300 hover:scale-105"
+                    >
+                        <ShoppingCart className="w-5 h-5" />
+                        {cartItems.length > 0 && (
+                            <span className="absolute top-0 right-[-10px] bg-red-500 text-white text-xs rounded-full px-2 py-0.5">{cartItems.length}</span>
+                        )}
+                    </Link>
+
+                    <div className="flex flex-col gap-3 mt-5">
+                        <Link
+                            to="/Electronics"
+                            className="text-gray-700 hover:text-blue-500 transition-transform duration-300 hover:scale-105"
+                        >
+                            کالای دیجیتال
+                        </Link>
+                        <Link
+                            to="/CarsAndMotorcycles"
+                            className="text-gray-700 hover:text-blue-500 transition-transform duration-300 hover:scale-105"
+                        >
+                            خودرو و موتورسیکلت
+                        </Link>
+                        <Link
+                            to="/AudioVideo"
+                            className="text-gray-700 hover:text-blue-500 transition-transform duration-300 hover:scale-105"
+                        >
+                            صوتی و تصویری
+                        </Link>
+                        <Link
+                            to="/Stationery"
+                            className="text-gray-700 hover:text-blue-500 transition-transform duration-300 hover:scale-105"
+                        >
+                            لوازم تحریر
+                        </Link>
+                    </div>
+                </div>
+            )}
+
         </div>
     );
 };

@@ -1,63 +1,3 @@
-// import React from "react";
-// import { motion } from "framer-motion";
-// import { useNavigate } from "react-router-dom";
-// import { FaArrowRight } from "react-icons/fa";
-// import { products } from "../../components/Products-Component/Products-component";
-
-// export const AudioVideo = () => {
-//     const navigate = useNavigate();
-
-//     const filteredProducts = products.filter(product =>
-//         ["لوازم صوتی", "تلویزیون"]
-//             .includes(product.category)
-//     );
-//     return (
-//         <motion.div
-//             initial={{ opacity: 0, scale: 0.8, y: 30 }}
-//             animate={{ opacity: 1, scale: 1, y: 0 }}
-//             transition={{ duration: 2, ease: "easeOut" }}
-//             className="flex flex-col items-center mt-10 h-full min-h-screen"
-//         >
-//             <button
-//                 onClick={() => navigate("/")}
-//                 className="bg-blue-500 absolute left-10 top-[40%] -translate-y-1/2 text-white p-3 rounded-full shadow-md 
-//                                        hover:bg-blue-600 transition-all duration-300 group"
-//             >
-//                 <FaArrowRight size={20} className="transition-transform duration-300 ease-out group-hover:rotate-180" />
-//             </button>
-//             <h1 className="text-black text-xl font-bold tracking-wide mt-52 text-right border-b-2 border-gray-300 pb-2 w-fit">
-//                 صوتی تصویری
-//             </h1>
-//             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-5 gap-6 w-full mt-10 max-w-8xl">
-//                 {filteredProducts.map(product => (
-//                     <div key={product.id} className="bg-white p-4 rounded-xl shadow-md flex flex-col items-center hover:shadow-xl hover:scale-105 transition-transform duration-200 ease-in">
-//                         <img src={product.imageUrl} alt={product.name} className="w-full h-60 object-cover rounded-md" />
-//                         <h2 className="mt-2 text-lg font-semibold text-gray-800">{product.name}</h2>
-//                         <div className="flex justify-between items-center w-full mt-5">
-//                             <div>
-//                                 {product.discount > 0 && (
-//                                     <span className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-lg">
-//                                         {product.discount}%
-//                                     </span>
-//                                 )}
-//                             </div>
-//                             <div className="flex justify-between w-20 self-end text-center">
-//                                 <p className="text-red-500 line-through text-sm">{product.originalPrice}</p>
-//                                 <p className="text-green-400 mt-1 text-lg font-semibold">{product.price}</p>
-//                             </div>
-//                         </div>
-//                         <div className="mt-5">
-//                             <button className="bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-200">
-//                                 افزودن به سبد خرید
-//                             </button>
-//                         </div>
-//                     </div>
-//                 ))}
-//             </div>
-//         </motion.div>
-//     );
-// };
-
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -106,9 +46,9 @@ export const AudioVideo = () => {
     // Render
     return (
         <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: 30 }}
+            initial={{ opacity: 0, scale: .8, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 2, ease: "easeOut" }}
+            transition={{ duration: 1, ease: "easeOut" }}
             className="flex flex-col items-center mt-10 h-full min-h-screen"
         >
             {/* پیام موفقیت */}

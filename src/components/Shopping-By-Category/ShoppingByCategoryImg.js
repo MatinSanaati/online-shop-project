@@ -22,6 +22,7 @@ import YouPuttHeMobilePhoneHolderOnTheTable from '../../assets/img-section-Shopp
 import MobileHolder from '../../assets/img-section-Shopping-by-category/هولدر موبایل.png';
 import ApplePhoneGlass from '../../assets/img-section-Shopping-by-category/گلس گوشی اپل.png';
 
+
 const products = [
     { image: MouseBox, name: "جعبه ماوس" },
     { image: AppleCamera6, name: "دوربین اپل 6" },
@@ -46,7 +47,7 @@ const products = [
 
 export const ShoppingByCategoryImg = () => {
     return (
-        <div className="relative z-0 grid grid-rows-2 auto-cols-[minmax(150px,_1fr)] grid-flow-col w-full p-6 snap-x snap-mandatory cursor-grab">
+        <div className="relative z-0 grid gap-4 grid-rows-2 auto-cols-[minmax(150px,_1fr)] grid-flow-col w-full p-6 snap-x snap-mandatory cursor-grab">
             {products.map((product, index) => (
                 <div key={index} className=" relative z-10 flex flex-col items-center justify-between p-4 snap-start">
                     <div className='product-image'>
@@ -56,8 +57,8 @@ export const ShoppingByCategoryImg = () => {
                             className="w-20 h-20 object-cover rounded-full shadow-md"
                         />
                     </div>
-                    <div className='text-center bg-slate-600'>
-                        <p className="text-gray-700 font-semibold mt-3">{product.name}</p>
+                    <div className='text-center'>
+                        <p className="text-gray-700 font-medium">{product.name}</p>
                     </div>
                 </div>
             ))}

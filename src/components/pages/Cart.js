@@ -66,7 +66,7 @@ export const Cart = () => {
                 transition={{ duration: 0.6 }}
             >
                 <div className="w-full min-h-screen bg-gray-100 shadow-lg rounded-lg p-6">
-                    <h1 className="cart_header text-2xl font-semibold text-gray-800 mb-4 text-center">🛒 سبد خرید شما</h1>
+                    <h1 className="cart_header relative text-2xl font-semibold text-gray-800 mb-4 text-center">🛒 سبد خرید شما</h1>
                     {cartItems.length > 0 ? (
                         <div className="flex flex-col justify-between items-start mt-10 w-full gap-4">
                             {cartItems.map((item, index) => (
@@ -122,7 +122,7 @@ export const Cart = () => {
                         </div>
                     ) : (
                         <motion.div
-                            className="text-center text-gray-600 mt-20 text-9xl"
+                            className="shopping_icon text-center text-gray-600 mt-20 text-9xl"
                             initial={{ opacity: 0, y: 500, scale: 0.5, rotate: -180 }}  // ابتدا آیکون محو و کوچک است و 180 درجه چرخیده
                             animate={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}  // در نهایت آیکون قابل مشاهده، به اندازه اصلی و بدون چرخش است
                             transition={{

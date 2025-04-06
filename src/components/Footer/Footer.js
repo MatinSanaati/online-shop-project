@@ -1,5 +1,4 @@
 // Style
-import '../../styles/Page-Responsive/Home-Page-Responsive.css';
 
 // React--Imports
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
@@ -7,7 +6,7 @@ import { motion } from "framer-motion";
 
 export const Footer = () => {
     return (
-        <footer className="footer bg-gray-200 rounded-lg text-black py-10 px-6 mt-16">
+        <footer className="footer bg-gray-200 rounded-lg w-full text-black py-10 px-6 mt-16">
             <div className="footer_content max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
                 {/* Logo Section */}
                 <button>

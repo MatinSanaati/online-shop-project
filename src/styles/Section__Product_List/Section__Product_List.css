@@ -1,3 +1,20 @@
 .section__product_list::-webkit-scrollbar {
     display: none;
 }
+
+/* Responsive */
+@media only screen and (max-width: 780px) {
+    .section__product_list {
+        margin-top: 22rem;
+    }
+
+    .h3_parent {
+        font-size: 19PX;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .section__product_list {
+        margin-top: 27rem;
+    }
+}

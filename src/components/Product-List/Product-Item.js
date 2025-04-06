@@ -1,7 +1,7 @@
 import React from 'react';
 export const ProductItem = ({ product }) => {
     return (
-        <div className="mr-16 flex flex-col items-center text-center w-auto h-auto">
+        <div className="mr-16 border-b-2 pb-2 flex flex-col items-center text-center w-auto h-auto">
             <img
                 src={product.imageUrl}
                 alt={product.name}

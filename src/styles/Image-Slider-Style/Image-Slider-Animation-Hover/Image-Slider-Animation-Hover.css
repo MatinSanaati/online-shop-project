@@ -1,22 +1,11 @@
-/* استایل دکمه‌ها */
 .slider-container button {
     transition: box-shadow 0.3s ease;
-    /* انیمیشن فقط برای سایه */
 }
 
-/* انیمیشن هاور برای دکمه‌های فلش */
-.slider-container button:hover {
-    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.5);
-    /* سایه کج از بالای دکمه به سمت پایین */
-}
-
-/* استایل دکمه‌ها در حالت معمول */
 .slider-container button {
     padding: 10px;
     background-color: rgba(0, 0, 0, 0.5);
-    /* پس‌زمینه نیمه شفاف */
     border-radius: 50%;
-    /* گوشه‌های گرد */
     border: none;
     cursor: pointer;
     color: white;
@@ -25,7 +14,6 @@
     align-items: center;
 }
 
-/* استایل‌ها برای موقعیت‌دهی دکمه‌ها */
 .slider-container button {
     position: absolute;
     top: 50%;
@@ -33,28 +21,14 @@
     z-index: 10;
 }
 
-/* دکمه فلش چپ */
 .slider-container .prev-button {
     left: 10px;
-    /* فاصله از سمت چپ */
 }
 
-/* دکمه فلش راست */
 .slider-container .next-button {
     right: 10px;
-    /* فاصله از سمت راست */
 }
-
-/* تغییرات انیمیشن در سایه و بزرگ شدن */
-.slider-container button:hover {
-    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.6);
-    /* سایه کج از بالای دکمه به سمت پایین */
-}
-
-/* استایل برای نوار ناوبری در حالت اسکرول */
 .hidden-nav {
     transform: translateY(-100%);
-    /* نوار ناوبری بالا می‌رود */
     transition: transform 0.3s ease-in-out;
-    /* انیمیشن نرم برای حرکت */
 }

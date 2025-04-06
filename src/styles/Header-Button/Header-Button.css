@@ -20,9 +20,7 @@
 .icon__card_header_left {
     position: relative;
     display: inline-flex;
-    /* برای نمایش آیتم‌ها در کنار هم */
     align-items: center;
-    /* برای تراز کردن عمودی */
 }
 
 .icon__card_header_left::after {
@@ -52,7 +50,6 @@
     font-size: 12px;
 }
 
-/* استایل برای آیکون */
 .icon__card_header_left .ShoppingCart {
     position: relative;
     z-index: 1;
@@ -153,6 +150,14 @@ nav .link:hover::after {
     animation: super-pulse .7s ease-in-out;
 }
 
+.menu__button {
+    display: none;
+}
+
+.icon__login--signin {
+    display: none;
+}
+
 @keyframes super-pulse {
     0% {
         width: 0;
@@ -201,8 +206,273 @@ nav .link:hover::after {
     animation: blurIn .5s ease-in-out forwards;
 }
 
-@media screen and (max-width: 770px) {
+@keyframes slide-in {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.animate-slide-in {
+    animation: slide-in 0.4s ease-out forwards;
+}
+
+@keyframes slide-out {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+.animate-slide-out {
+    animation: slide-out 0.4s ease-in forwards;
+}
+
+/* Responsive */
+@media only screen and (max-width: 1200px) {
+    .header_button {
+        font-size: .9rem;
+    }
+
+    .search_container {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 850px) {
+
+    .icon__login_signin,
+    .login_text {
+        display: none;
+    }
+
+    .icon__login--signin {
+        display: flex;
+    }
+}
+
+@media only screen and (max-width: 780px) {
+
+    .icon__home_header_right {
+        display: none;
+    }
+
+    .search_container {
+        width: 100%;
+        padding: 2px;
+    }
+
+    .btn__login_signin {
+        margin-left: -.1rem;
+    }
+
+    .menu_nav_bar {
+        display: none;
+    }
+
+    .menu__button {
+        display: flex;
+        padding: 5px;
+    }
+
     .icon__card_header_left::after {
         content: none;
+    }
+
+    .icon__card_header_left {
+        display: none;
+    }
+
+    .menu_nav_bar--mobile {
+        display: block;
+        background-color: white;
+        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn__login_signin {
+        padding: 5px;
+    }
+
+    .menu_nav_bar--mobile {
+        width: 30%;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+
+    .section_right {
+        gap: 0;
+    }
+
+    .header_button {
+        font-size: 12px;
+    }
+
+    .menu__button {
+        padding: 5px;
+    }
+
+    .search_container {
+        width: 100%;
+        padding: 2px;
+    }
+
+    .icon_search {
+        transform: scale(-1rem);
+        padding: 0;
+        margin-right: -3px;
+    }
+
+    .input {
+        margin-right: -19px;
+        padding: 0;
+    }
+
+    .btn__login_signin {
+        padding: 5px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+
+    .search_container {
+        width: 100%;
+        padding: 2px;
+        align-items: stretch;
+        gap: 5px;
+    }
+
+    .search_container button {
+        align-self: flex-end;
+        margin-bottom: 4px;
+    }
+
+    .input {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .search_input {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .icon_search {
+        width: 28px;
+        height: 28px;
+        margin: 0 4px;
+    }
+
+    .btn__login_signin {
+        font-size: 12px;
+        padding: 6px 10px;
+        justify-content: center;
+    }
+
+    .icon__login--signin {
+        display: flex;
+        margin-left: 0;
+    }
+
+    .icon__login_signin,
+    .login_text {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 510px) {
+    .menu_nav_bar--mobile {
+        width: 35%;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .btn__login_signin {
+        font-size: 11px;
+        padding: 5px 8px;
+    }
+
+    .icon__login--signin {
+        width: 20px;
+        height: 20px;
+    }
+
+    .search_container {
+        width: 100%;
+        padding: 2px;
+        align-items: stretch;
+        gap: 5px;
+    }
+
+    .input {
+        font-size: 12px;
+    }
+
+    .search_input::placeholder {
+        font-size: 12px;
+    }
+}
+
+@media only screen and (max-width: 440px) {
+    .menu_nav_bar--mobile {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+
+    .search_container {
+        width: 100%;
+        padding: 2px;
+        align-items: stretch;
+        gap: 5px;
+    }
+
+    .search_input {
+        font-size: 11px;
+    }
+
+    .scroll-container {
+        font-size: 12px;
+    }
+
+    .btn__login_signin {
+        padding: 4px 6px;
+        font-size: 10px;
+    }
+}
+
+@media only screen and (max-width: 280px) {
+    .search_container {
+        gap: 2px;
+    }
+
+    .search_input {
+        padding: 5px;
+    }
+
+    .icon_search {
+        width: 24px;
+        height: 24px;
+    }
+
+    .btn__login_signin {
+        padding: 3px 5px;
+        font-size: 9px;
+    }
+
+    .icon__login--signin {
+        width: 18px;
+        height: 18px;
     }
 }

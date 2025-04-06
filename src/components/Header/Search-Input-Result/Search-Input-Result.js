@@ -9,14 +9,21 @@ export const SearchInputResult = ({ searchQuery, onSelectResult, isButtonClicked
     const [showBox, setShowBox] = useState(false);
     const [boxContent, setBoxContent] = useState("");
 
+    // تمام لاگ ها و فیلتر درست
     useEffect(() => {
-        if (isButtonClicked && searchQuery.trim()) {
-            setShowBox(true);
-            setBoxContent(`شما جستجو کردید: ${searchQuery}`);
-        } else {
-            setShowBox(false);
+        if (!searchQuery || typeof searchQuery !== "string") return;
+
+        const trimmedQuery = searchQuery.trim().toLowerCase();
+        const results = products.filter(item =>
+            item?.name?.toLowerCase().includes(trimmedQuery)
+        );
+
+        console.log("🔍 Filtered Results:", results);
+
+        if (typeof onSearchResults === "function") {
+            onSearchResults(results); // این میره به HomePage
         }
-    }, [isButtonClicked, searchQuery]);
+    }, [searchQuery, onSearchResults]);
 
     // بررسی مقدار ورودی و فیلتر کردن نتایج
     const filteredResults = (searchQuery && typeof searchQuery === "string" ? searchQuery.trim() : "")

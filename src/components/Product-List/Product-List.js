@@ -1,3 +1,6 @@
+// Style
+import '../../styles/Section__Product_List/Section__Product_List.css';
+
 import React from 'react';
 import { ProductItem } from './Product-Item';
 
@@ -45,7 +48,7 @@ const products = [
 ];
 export const ProductList = () => {
     return (
-        <div className="flex justify-between items-center">
+        <div className="product_list flex justify-between items-center">
             {products.map((product) => (
                 <ProductItem key={product.id} product={product} />
             ))}
