@@ -4,15 +4,12 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background: rgba(34, 197, 94, 0.9);
-    /* رنگ شفاف */
     backdrop-filter: blur(10px);
-    /* افکت شیشه‌ای */
     -webkit-backdrop-filter: blur(10px);
     color: white;
     padding: 20px 40px;
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(34, 197, 94, 0.6);
-    /* افکت نئونی */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,7 +17,7 @@
     overflow: hidden;
     z-index: 1000;
     opacity: 0;
-    animation: fadeIn 0.7s ease-in-out forwards, scalePulse 1.5s infinite alternate ease-in-out;
+    animation: fadeIn .7s ease-in-out forwards, scalePulse 1.5s infinite alternate ease-in-out;
 }
 
 /* انیمیشن ورود */
@@ -94,5 +91,96 @@
 
     to {
         text-shadow: 0 0 15px rgba(255, 255, 255, 1);
+    }
+}
+
+@media only screen and (max-width: 1150px) {
+    .success-message {
+        padding: 0px;
+    }
+
+    .check-icon {
+        font-size: 25px;
+        margin-top: 1rem;
+    }
+
+    .success-text {
+        font-size: .9rem;
+        margin-bottom: .5rem;
+    }
+}
+
+@media only screen and (max-width: 780px) {
+
+    .success-message {
+        width: 70%;
+    }
+
+    .success-text {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .success-message {
+        width: 70%;
+    }
+
+    .success-text {
+        font-size: 12px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .success-message {
+        width: 80%;
+    }
+
+    .success-text {
+        font-size: 12px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .success-message {
+        width: 95%;
+    }
+
+    .success-text {
+        font-size: 12px;
+    }
+}
+
+@media only screen and (max-width: 355px) {
+    .success-message {
+        width: 95%;
+    }
+
+    .success-text {
+        font-size: 10px;
+    }
+}
+
+@media only screen and (max-width: 310px) {
+
+    .success-message {
+        width: 20%;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        box-shadow: none;
+    }
+
+    .success-message::before {
+        content: none;
+    }
+
+    .check-icon {
+        margin: 7px;
+        font-size: 36px;
+    }
+
+    .success-text {
+        display: none;
     }
 }
