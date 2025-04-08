@@ -1,0 +1,145 @@
+/* Animation */
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    10% {
+        transform: translateX(-20px);
+    }
+
+    20% {
+        transform: translateX(20px);
+    }
+
+    30% {
+        transform: translateX(-20px);
+    }
+
+    40% {
+        transform: translateX(-15px);
+    }
+
+    50% {
+        transform: translateX(15px);
+    }
+
+    60% {
+        transform: translateX(-15px);
+    }
+
+    60% {
+        transform: translateX(-10px);
+    }
+
+    70% {
+        transform: translateX(10px);
+    }
+
+    80% {
+        transform: translateX(-5px);
+    }
+
+    90% {
+        transform: translateX(5px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.shake {
+    animation: shake 0.4s ease;
+}
+
+/* Responsive--For-Login--Form && Error--Messages */
+/* Medium Devices (Tablet) */
+@media screen and (max-width: 768px) {
+    .login-form-wrapper {
+        padding: 30px;
+        max-width: 70%;
+        border-radius: 20px;
+    }
+
+    .login-form-wrapper h2 {
+        font-size: 24px;
+    }
+
+    .login-form-wrapper input {
+        font-size: 14px;
+        padding: 10px 12px;
+    }
+
+    .login-form-wrapper button {
+        padding: 10px;
+        font-size: 15px;
+    }
+
+    /* Styles--for--each--error--message--box */
+    .error-messages-container {
+        width: 75%;
+        padding: 0 12px;
+        text-align: center;
+    }
+
+    .error-box {
+        font-size: 14px;
+        padding: 5px 0;
+        border-radius: 7px;
+    }
+}
+
+/* Small Devices (Mobile) */
+@media screen and (max-width: 480px) {
+    .login-form-wrapper {
+        padding: 20px;
+        max-width: 80%;
+        border-radius: 16px;
+    }
+
+    .login-form-wrapper h2 {
+        font-size: 20px;
+    }
+
+    .login-form-wrapper button {
+        font-size: 14px;
+    }
+
+    /* Styles--for--each--error--message--box */
+    .error-messages-container {
+        width: 100%;
+        margin-right: 10px;
+        margin-right: -2px;
+    }
+
+    .error-box {
+        font-size: 14px;
+        padding: 4px 2px;
+        border-radius: 4px;
+    }
+}
+
+/* Ultra small devices */
+/* Extra Small Devices */
+@media screen and (max-width: 360px) {
+    .login-form-wrapper {
+        padding: 15px;
+    }
+
+    .login-form-wrapper input,
+    .login-form-wrapper button {
+        font-size: 13px;
+    }
+
+    .login-form-wrapper h2 {
+        font-size: 18px;
+    }
+
+    /* Styles--for--each--error--message--box */
+    .error-box {
+        font-size: 12.5px;
+        padding: 6px 10px;
+        border-radius: 8px;
+    }
+}
