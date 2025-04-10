@@ -156,19 +156,19 @@ export const HeaderButton = ({ setIsSearching, setSearchFinished, setSelectedCom
                             )}
 
                             {isFocused && (
-                                <div className="scroll-container absolute top-full w-full mt-2 bg-white shadow-md rounded-md z-10 animate-fade-in">
-                                    {text ? (
-                                        <SearchInputResult
-                                            searchQuery={text}
-                                            onSelectResult={handleSelectResult} // ارسال تابع برای انتخاب نتیجه
-                                            onSearchClick={handleSearchClick} // ارسال تابع کلیک به SearchInputResult
-                                        />
-                                    ) : (
-                                        <div className="p-4 text-gray-400 text-center bg-white rounded-lg shadow-lg">
-                                            محصول خود را اینجا پیدا کنید . . .
-                                        </div>
-                                    )}
-                                </div>
+                            <div className="scroll-container bg-white shadow-md rounded-md z-10 animate-fade-in md:absolute md:top-full md:w-full top-20 fixed left-0 w-screen md:h-auto md:rounded-md md:mt-2">
+                                {text ? (
+                                    <SearchInputResult
+                                        searchQuery={text}
+                                        onSelectResult={handleSelectResult} // ارسال تابع برای انتخاب نتیجه
+                                        onSearchClick={handleSearchClick} // ارسال تابع کلیک به SearchInputResult
+                                    />
+                                ) : (
+                                    <div className="p-4 text-gray-600 text-center bg-white rounded-lg shadow-lg">
+                                        محصول خود را اینجا پیدا کنید . . .
+                                    </div>
+                                )}
+                            </div>
                             )}
                         </div>
                     </div>

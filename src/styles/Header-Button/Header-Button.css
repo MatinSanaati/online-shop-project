@@ -243,10 +243,6 @@ nav .link:hover::after {
     .header_button {
         font-size: .9rem;
     }
-
-    .search_container {
-        width: 50%;
-    }
 }
 
 @media only screen and (max-width: 850px) {
@@ -344,9 +340,9 @@ nav .link:hover::after {
 }
 
 @media only screen and (max-width: 600px) {
-
     .search_container {
         width: 100%;
+        position: relative;
         padding: 2px;
         align-items: stretch;
         gap: 5px;
