@@ -65,9 +65,9 @@ export const AudioVideo = () => {
             <h1 className="text-black text-xl font-bold tracking-wide mt-52 text-right border-b-2 border-gray-300 pb-2 w-fit">
                 صوتی تصویری
             </h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-5 gap-6 w-full mt-10 max-w-8xl">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-5 gap-6 w-full max-w-8xl">
                 {filteredProducts.map((product, index) => (
-                    <div key={`${product.id}-${index}`} className="bg-white p-4 rounded-xl shadow-md flex flex-col items-center 
+                    <div key={`${product.id}-${index}`} className="bg-white p-4 rounded-xl shadow-md mt-5 flex flex-col items-center 
                     transition-transform duration-200 ease-in 
                     md:hover:shadow-xl md:hover:scale-105"
                     >
