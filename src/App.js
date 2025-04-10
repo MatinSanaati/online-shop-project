@@ -13,6 +13,7 @@ import { CarsAndMotorcycles } from "./components/Components-Hover-Nav/Cars-and-M
 import { AudioVideo } from "./components/Components-Hover-Nav/Audio-Video";
 import { LoginHandler } from "./components/Login-Handler/Login-Handler";
 import { Loading } from "./components/Loading/Loading";
+import { NotFound } from "./components/Not-Found/Not-Found";
 
 function App() {
   const [isSearching, setIsSearching] = useState(false);
@@ -44,7 +45,7 @@ function App() {
           <Route path="/CarsAndMotorcycles" element={<CarsAndMotorcycles />} />
           <Route path="/AudioVideo" element={<AudioVideo />} />
           <Route path="/Stationery" element={<Stationery />} />
-          {/* <Route path="*" element={<NotFound />} /> */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </LoginHandler>
     </Router>
