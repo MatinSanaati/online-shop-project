@@ -1,20 +1,20 @@
+/* ==== افکت خط زیر هدر ==== */
 .cart_header::after {
     content: '';
     position: absolute;
-    bottom: -8px;
+    bottom: -10px;
     left: 50%;
     transform: translateX(-50%);
     width: 180px;
     height: 2px;
     background-color: rgb(236, 118, 118);
-    font-weight: bold;
 }
 
+/* ==== انیمیشن slide-up ==== */
 .slide-up {
     animation: slideUp 1s ease-out forwards;
 }
 
-/* انیمیشن از پایین به بالا */
 @keyframes slideUp {
     0% {
         transform: translateY(30px);
@@ -27,23 +27,87 @@
     }
 }
 
-/* Responsive */
-@media only screen and (max-width: 450px) {
+/* ==== 📱 ریسپانسیو برای لپ‌تاپ و تبلت بزرگ (تا 1220px) ==== */
+@media (max-width: 1220px) {
+    .cart_total {
+        padding: 0.75rem;
+    }
 
+    .cart_total h2 {
+        font-size: 1rem;
+    }
+
+    .print_number--items,
+    .print_price--goods {
+        font-size: 0.875rem;
+    }
+
+    .btn_cart--total {
+        font-size: 0.875rem;
+        padding: 0.5rem;
+    }
+}
+
+/* ==== 💻 ریسپانسیو برای لپ‌تاپ‌های کوچک یا تبلت (تا 920px) ==== */
+@media (max-width: 920px) {
+    .cart_total {
+        padding: 0;
+    }
+
+    .print_number--items,
+    .print_price--goods {
+        font-size: .788rem;
+    }
+
+    .motion {
+        padding: 5px 10px 5px 10px;
+    }
+
+    .cart_item--info--action {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+    }
+}
+
+/* ==== 📲 ریسپانسیو برای تبلت‌های کوچک و موبایل (تا 768px) ==== */
+@media (max-width: 768px) {
+    .cart_bottom--wrapper {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        padding: 1rem;
+        z-index: 50;
+        border-top: 1px solid #e5e7eb;
+    }
+
+    .btn_cart--total {
+        margin-top: .75rem;
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .print_price--goods {
+        font-size: 15px;
+    }
+
+    .footer__wrapper--section {
+        display: none;
+    }
+}
+
+/* ==== 📱 موبایل کوچک (تا 450px) ==== */
+@media (max-width: 450px) {
     .cart_header {
         font-size: 1.2rem;
     }
 
     .cart_header::after {
-        content: '';
-        position: absolute;
-        bottom: -8px;
-        left: 50%;
-        transform: translateX(-50%);
         width: 130px;
-        height: 2px;
-        background-color: rgb(236, 118, 118);
-        font-weight: bold;
+        bottom: -8px;
     }
 
     .shopping_icon {
