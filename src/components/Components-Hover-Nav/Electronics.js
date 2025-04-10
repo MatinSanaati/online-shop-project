@@ -1,7 +1,10 @@
+// React--Imports
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
+
+// Import--Components
 import { products } from "../../components/Products-Component/Products-component";
 import { SuccessMessage } from "../../components/Components-Hover-Nav/Success-Message/Success-Message";
 
@@ -56,7 +59,7 @@ export const Electronics = () => {
             <button
                 onClick={() => navigate("/")}
                 className="bg-blue-500 absolute left-10 top-[40%] -translate-y-1/2 text-white p-3 rounded-full shadow-md 
-               hover:bg-blue-600 transition-all duration-300 group"
+                ... transition-all duration-300 group md:hover:bg-blue-600"
             >
                 <FaArrowLeft size={20} className="transition-transform duration-300" />
             </button>
@@ -66,7 +69,10 @@ export const Electronics = () => {
             </h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-5 gap-6 w-full mt-10 max-w-8xl">
                 {filteredProducts.map((product, index) => (
-                    <div key={`${product.id}-${index}`} className="bg-white p-4 rounded-xl shadow-md flex flex-col items-center hover:shadow-xl hover:scale-105 transition-transform duration-200 ease-in">
+                    <div key={`${product.id}-${index}`} className="bg-white p-4 rounded-xl shadow-md flex flex-col items-center 
+                    transition-transform duration-200 ease-in 
+                    md:hover:shadow-xl md:hover:scale-105"
+                    >
                         <img src={product.imageUrl} alt={product.name} className="w-full h-60 object-cover rounded-md" />
                         <h2 className="mt-2 text-lg font-semibold text-gray-800">{product.name}</h2>
                         <div className="flex justify-between items-center w-full mt-5">

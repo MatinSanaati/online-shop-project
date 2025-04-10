@@ -57,7 +57,7 @@ export const AudioVideo = () => {
             <button
                 onClick={() => navigate("/")}
                 className="bg-blue-500 absolute left-10 top-[40%] -translate-y-1/2 text-white p-3 rounded-full shadow-md 
-                                       hover:bg-blue-600 transition-all duration-300 group"
+                ... transition-all duration-300 group md:hover:bg-blue-600"
             >
                 <FaArrowLeft size={20} className="transition-transform duration-300" />
             </button>
