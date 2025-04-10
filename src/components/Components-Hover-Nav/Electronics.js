@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { FaArrowRight } from "react-icons/fa";
+import { FaArrowLeft } from "react-icons/fa";
 import { products } from "../../components/Products-Component/Products-component";
 import { SuccessMessage } from "../../components/Components-Hover-Nav/Success-Message/Success-Message";
 
@@ -58,7 +58,7 @@ export const Electronics = () => {
                 className="bg-blue-500 absolute left-10 top-[40%] -translate-y-1/2 text-white p-3 rounded-full shadow-md 
                hover:bg-blue-600 transition-all duration-300 group"
             >
-                <FaArrowRight size={20} className="transition-transform duration-300 ease-out group-hover:rotate-180" />
+                <FaArrowLeft size={20} className="transition-transform duration-300" />
             </button>
 
             <h1 className="text-black text-xl font-bold tracking-wide mt-52 text-right border-b-2 border-gray-300 pb-2 w-fit">
