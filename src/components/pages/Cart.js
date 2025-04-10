@@ -133,7 +133,7 @@ export const Cart = () => {
                         rotate: { duration: 1 },
                     }}
                 >
-                    <p>🛒</p>
+                    <p className='shopping_icon'>🛒</p>
                 </motion.div>
             )}
 
