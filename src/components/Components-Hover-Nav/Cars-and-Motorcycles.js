@@ -68,7 +68,10 @@ export const CarsAndMotorcycles = () => {
             </h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-5 gap-6 w-full mt-10 max-w-8xl">
                 {filteredProducts.map((product, index) => (
-                    <div key={`${product.id}-${index}`} className="bg-white p-4 rounded-xl shadow-md flex flex-col items-center hover:shadow-xl hover:scale-105 transition-transform duration-200 ease-in">
+                    <div key={`${product.id}-${index}`} className="bg-white p-4 rounded-xl shadow-md flex flex-col items-center
+                        transition-transform duration-200 ease-in
+                        md:hover:shadow-xl md:hover:scale-105"
+                    >
                         <img src={product.imageUrl} alt={product.name} className="w-full h-60 object-cover rounded-md" />
                         <h2 className="mt-2 text-lg font-semibold text-gray-800">{product.name}</h2>
                         <div className="flex justify-between items-center w-full mt-5">
@@ -100,6 +103,6 @@ export const CarsAndMotorcycles = () => {
                     </div>
                 ))}
             </div>
-        </motion.div>
+        </motion.div >
     );
 };
