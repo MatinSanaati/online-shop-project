@@ -1,23 +1,25 @@
 // Style
+import '../../styles/Footer/footer.css';
 
 // React--Imports
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaInstagram, FaLinkedin, FaWhatsapp, FaTelegram } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 export const Footer = () => {
     return (
         <footer className="footer bg-gray-200 rounded-lg w-full text-black py-10 px-6 mt-16">
-            <div className="footer_content max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            {/* Container for footer content */}
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="footer_content max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center"
+            >
                 {/* Logo Section */}
                 <button>
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="text-2xl font-bold text-blue-400"
-                    >
+                    <div className="text-2xl font-bold text-blue-400">
                         MyShop
-                    </motion.div>
+                    </div>
                 </button>
 
                 {/* Navigation */}
@@ -38,14 +40,14 @@ export const Footer = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.7, delay: 0.4 }}
-                    className="flex space-x-4 mt-4 md:mt-0"
+                    className="flex space-x-5 mt-4 md:mt-0 text-xl"
                 >
-                    <FaFacebook className="text-xl hover:text-blue-500 transition-all duration-300 cursor-pointer" />
-                    <FaTwitter className="text-xl hover:text-blue-400 transition-all duration-300 cursor-pointer" />
-                    <FaInstagram className="text-xl hover:text-pink-500 transition-all duration-300 cursor-pointer" />
-                    <FaLinkedin className="text-xl hover:text-blue-600 transition-all duration-300 cursor-pointer" />
+                    <FaLinkedin className="cursor-pointer hover:text-blue-700 transition-colors duration-300" title="LinkedIn" />
+                    <FaInstagram className="cursor-pointer hover:text-pink-500 transition-colors duration-300" title="Instagram" />
+                    <FaWhatsapp className="cursor-pointer hover:text-green-500 transition-colors duration-300" title="WhatsApp" />
+                    <FaTelegram className="cursor-pointer hover:text-sky-500 transition-colors duration-300" title="Telegram" />
                 </motion.div>
-            </div>
+            </motion.div>
 
             {/* Bottom Text */}
             <motion.div
