@@ -353,6 +353,10 @@ nav .link:hover::after {
         margin-bottom: 4px;
     }
 
+    .btn_clear--content--input {
+        margin-left: -5px;
+    }
+
     .input {
         width: 100%;
         margin-right: 0;
@@ -445,6 +449,10 @@ nav .link:hover::after {
     .btn__login_signin {
         padding: 4px 6px;
         font-size: 10px;
+    }
+
+    .btn_clear--content--input {
+        margin-left: -8px;
     }
 }
 

@@ -137,7 +137,7 @@ export const HeaderButton = ({ setIsSearching, setSearchFinished, setSelectedCom
                         </button>
                         <div className="input relative w-96 z-40">
                             <input
-                                className="search_input rounded-lg p-2 w-full text-gray-900 font-bold bg-white border-none outline-none border-b-2 border-transparent focus:border-green-500 focus:ring-0 transition-all duration-300"
+                                className="search_input rounded-lg p-2 w-[90%] text-gray-900 font-bold bg-white border-none outline-none border-b-2 border-transparent focus:border-green-500 focus:ring-0 transition-all duration-300"
                                 value={text}
                                 onChange={handleChange}
                                 placeholder="جستجو کنید . . . !"
@@ -149,7 +149,7 @@ export const HeaderButton = ({ setIsSearching, setSearchFinished, setSelectedCom
                             {text && (
                                 <button
                                     onClick={handleClear}
-                                    className="absolute font-bold left-3 top-1/2 transform -translate-y-1/2 text-black transition duration-300 ease-in-out hover:scale-125"
+                                    className="btn_clear--content--input absolute font-bold left-2.5 top-1/2 transform -translate-y-1/2 text-black transition duration-300 ease-in-out hover:scale-125"
                                 >
                                     &#x2715;
                                 </button>
