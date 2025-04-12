@@ -49,7 +49,7 @@ export const CarsAndMotorcycles = () => {
         <motion.div
             initial={{ opacity: 0, scale: .8, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
+            transition={{ duration: 2, ease: "easeOut" }}
             className="flex flex-col items-center mt-10 h-full min-h-screen"
         >
             {/* پیام موفقیت */}
