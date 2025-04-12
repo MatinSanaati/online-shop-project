@@ -81,6 +81,12 @@ export const LoginForm = () => {
 
         if (isNameEmpty || isPhoneEmpty) {
             setShowRequiredWarning(true);
+
+            // 👇 اضافه کردن ویبره
+            if (navigator.vibrate) {
+                navigator.vibrate(1000); // یا [100, 50, 100] برای ویبره چند مرحله‌ای
+            }
+
             if (isNameEmpty) {
                 setShakeName(true);
                 setTimeout(() => setShakeName(false), 500);
