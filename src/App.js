@@ -96,11 +96,11 @@ const AppContent = ({
   setSearchQuery,
 }) => {
   const location = useLocation();
-  const isHome = location.pathname === "/";
+  const showHeader = location.pathname === "/" || location.pathname === "/Cart"; // ✅ اصلاح شرط
 
   return (
     <>
-      {isHome && (
+      {showHeader && (
         <Header
           id="header"
           setIsSearching={setIsSearching}
