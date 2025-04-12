@@ -11,7 +11,6 @@ import { ProductList } from '../Product-List/Product-List';
 import { Draggable } from '../Draggable/Draggable';
 import { ShoppingByCategory } from '../Shopping-By-Category/ShoppingByCategory';
 import { Footer } from '../Footer/Footer';
-import { ResearchProductList } from '../Research-Product-List/Research-Product-List';
 import { Loading } from '../Loading/Loading';
 
 export const HomePage = ({ isSearching, searchFinished, searchQuery }) => {
