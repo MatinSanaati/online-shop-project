@@ -49,7 +49,7 @@ export const ImageSlider = () => {
             {/* دکمه فلش چپ */}
             <button
                 onClick={prevImage}
-                className="fi_chevron_left absolute left-0 top-1/2 transform -translate-y-1/2 text-white bg-black bg-opacity-50 p-3 rounded-full hover:bg-opacity-75 transition duration-300"
+                className="fi_chevron_left hidden md:block absolute left-0 top-1/2 transform -translate-y-1/2 text-white bg-black bg-opacity-50 p-3 rounded-full hover:bg-opacity-75 transition duration-300"
             >
                 <FiChevronLeft size={30} />
             </button>
@@ -74,7 +74,7 @@ export const ImageSlider = () => {
             {/* دکمه فلش راست */}
             <button
                 onClick={nextImage}
-                className="fi_chevron_right absolute right-0 top-1/2 transform -translate-y-1/2 text-white bg-black bg-opacity-50 p-3 rounded-full hover:bg-opacity-75 transition duration-300"
+                className="fi_chevron_right hidden md:block absolute right-0 top-1/2 transform -translate-y-1/2 text-white bg-black bg-opacity-50 p-3 rounded-full hover:bg-opacity-75 transition duration-300"
             >
                 <FiChevronRight size={30} />
             </button>
