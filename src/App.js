@@ -33,20 +33,22 @@ function App() {
   return (
     <Router>
       <LoginHandler>
-        <Header setIsSearching={setIsSearching} setSearchFinished={setSearchFinished} setSearchQuery={setSearchQuery} />
-        <Routes>
-          <Route
-            path="/"
-            element={<HomePage isSearching={isSearching} searchFinished={searchFinished} searchQuery={searchQuery} />}
-          />
-          <Route path="/Cart" element={<Cart />} />
-          <Route path="/LoginForm" element={<LoginForm />} />
-          <Route path="/Electronics" element={<Electronics />} />
-          <Route path="/CarsAndMotorcycles" element={<CarsAndMotorcycles />} />
-          <Route path="/AudioVideo" element={<AudioVideo />} />
-          <Route path="/Stationery" element={<Stationery />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Header id="header" setIsSearching={setIsSearching} setSearchFinished={setSearchFinished} setSearchQuery={setSearchQuery} />
+        <div id="main-content">
+          <Routes>
+            <Route
+              path="/"
+              element={<HomePage isSearching={isSearching} searchFinished={searchFinished} searchQuery={searchQuery} />}
+            />
+            <Route path="/Cart" element={<Cart />} />
+            <Route path="/LoginForm" element={<LoginForm />} />
+            <Route path="/Electronics" element={<Electronics />} />
+            <Route path="/CarsAndMotorcycles" element={<CarsAndMotorcycles />} />
+            <Route path="/AudioVideo" element={<AudioVideo />} />
+            <Route path="/Stationery" element={<Stationery />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </div>
       </LoginHandler>
     </Router>
   );

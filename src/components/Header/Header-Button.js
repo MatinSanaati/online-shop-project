@@ -3,7 +3,7 @@ import '../../styles/Style-Blur-Box-Result/Style-Blur-Box-Result.css';
 import '../../styles/Header-Button/Header-Button.css';
 
 // Imports--React
-import React, { useEffect, useState, } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { ShoppingCart, Home, Search, LogIn } from 'lucide-react';
 import { Link } from "react-router-dom";
 
@@ -25,6 +25,8 @@ export const HeaderButton = ({ setIsSearching, setSearchFinished, setSelectedCom
     const [isButtonClicked, setIsButtonClicked] = useState(false);
     const [cartItems, setCartItems] = useState([]); // وضعیت سبد خرید
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const mobileMenuRef = useRef(null);
+    const header = document.getElementById("header");
 
     // تابع برای دریافت سبد خرید از localStorage
     const updateCart = () => {
@@ -79,6 +81,47 @@ export const HeaderButton = ({ setIsSearching, setSearchFinished, setSelectedCom
         const interval = setInterval(updateCart, 100);
         return () => clearInterval(interval);
     }, []);
+
+    // بستن منو ی باز شده موقع کلیک رو دام
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (
+                isMobileMenuOpen &&
+                mobileMenuRef.current &&
+                !mobileMenuRef.current.contains(event.target)
+            ) {
+                setIsMobileMenuOpen(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [isMobileMenuOpen]);
+
+    // در useEffect برای مدیریت وضعیت منوی موبایل و اعمال افکت بلور
+    useEffect(() => {
+        const body = document.body;
+        const mainContent = document.getElementById("main-content");
+        const header = document.getElementById("header");
+
+        if (isMobileMenuOpen) {
+            body.style.overflow = 'hidden'; // Disable scroll
+            if (mainContent) mainContent.classList.add("blur-background");
+            if (header) header.classList.add("blur-background");
+        } else {
+            body.style.overflow = 'auto';
+            if (mainContent) mainContent.classList.remove("blur-background");
+            if (header) header.classList.remove("blur-background");
+        }
+
+        return () => {
+            body.style.overflow = 'auto';
+            if (mainContent) mainContent.classList.remove("blur-background");
+            if (header) header.classList.remove("blur-background");
+        };
+    }, [isMobileMenuOpen]);
 
     // Effect to disable/enable scroll when the search box is focused
     useEffect(() => {
@@ -156,19 +199,19 @@ export const HeaderButton = ({ setIsSearching, setSearchFinished, setSelectedCom
                             )}
 
                             {isFocused && (
-                            <div className="scroll-container bg-white shadow-md rounded-md z-10 animate-fade-in md:absolute md:top-full md:w-full top-20 fixed left-0 w-screen md:h-auto md:rounded-md md:mt-2">
-                                {text ? (
-                                    <SearchInputResult
-                                        searchQuery={text}
-                                        onSelectResult={handleSelectResult} // ارسال تابع برای انتخاب نتیجه
-                                        onSearchClick={handleSearchClick} // ارسال تابع کلیک به SearchInputResult
-                                    />
-                                ) : (
-                                    <div className="p-4 text-gray-600 text-center bg-white rounded-lg shadow-lg">
-                                        محصول خود را اینجا پیدا کنید . . .
-                                    </div>
-                                )}
-                            </div>
+                                <div className="scroll-container bg-white shadow-md rounded-md z-10 animate-fade-in md:absolute md:top-full md:w-full top-20 fixed left-0 w-screen md:h-auto md:rounded-md md:mt-2">
+                                    {text ? (
+                                        <SearchInputResult
+                                            searchQuery={text}
+                                            onSelectResult={handleSelectResult} // ارسال تابع برای انتخاب نتیجه
+                                            onSearchClick={handleSearchClick} // ارسال تابع کلیک به SearchInputResult
+                                        />
+                                    ) : (
+                                        <div className="p-4 text-gray-600 text-center bg-white rounded-lg shadow-lg">
+                                            محصول خود را اینجا پیدا کنید . . .
+                                        </div>
+                                    )}
+                                </div>
                             )}
                         </div>
                     </div>
@@ -208,7 +251,12 @@ export const HeaderButton = ({ setIsSearching, setSearchFinished, setSelectedCom
 
             {/* Mobile Menu */}
             {isMobileMenuOpen && (
-                <div className="menu_nav_bar--mobile animate-slide-in fixed top-0 right-0 w-1/4 h-screen bg-white shadow-lg z-50 p-6 flex flex-col gap-6 transition-all duration-300 md:hidden">
+                <div
+
+                    // بستن منو موقع کلیک رو دام
+                    ref={mobileMenuRef}
+                    // 
+                    className="menu_nav_bar--mobile animate-slide-in fixed top-0 right-0 w-1/4 h-screen bg-white shadow-lg z-50 p-6 flex flex-col gap-6 transition-all duration-300 md:hidden">
                     <button
                         className="self-end text-red-500 font-bold text-xl p-2 rounded-md shadow-md transition-transform duration-300 hover:scale-110"
                         onClick={() => setIsMobileMenuOpen(false)}
