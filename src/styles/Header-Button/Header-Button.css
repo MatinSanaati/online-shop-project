@@ -3,6 +3,7 @@
     filter: blur(5px);
     transition: filter .3s ease-in-out;
 }
+
 /*  */
 
 .btn__login_signin {
@@ -307,7 +308,7 @@ nav .link:hover::after {
     }
 
     .menu_nav_bar--mobile {
-        width: 30%;
+        width: 40%;
     }
 }
 
@@ -399,7 +400,7 @@ nav .link:hover::after {
 
 @media only screen and (max-width: 510px) {
     .menu_nav_bar--mobile {
-        width: 35%;
+        width: 50%;
     }
 }
 
@@ -433,6 +434,12 @@ nav .link:hover::after {
 @media only screen and (max-width: 440px) {
     .menu_nav_bar--mobile {
         width: 50%;
+    }
+}
+
+@media only screen and (max-width: 380px) {
+    .menu_nav_bar--mobile {
+        width: 70%;
     }
 }
 

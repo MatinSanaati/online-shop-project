@@ -258,51 +258,57 @@ export const HeaderButton = ({ setIsSearching, setSearchFinished, setSelectedCom
                     // 
                     className="menu_nav_bar--mobile animate-slide-in fixed top-0 right-0 w-1/4 h-screen bg-white shadow-lg z-50 p-6 flex flex-col gap-6 transition-all duration-300 md:hidden">
                     <button
-                        className="self-end text-red-500 font-bold text-xl p-2 rounded-md shadow-md transition-transform duration-300 hover:scale-110"
+                        className="self-end text-red-500 font-bold text-xl px-1 rounded-md shadow-md"
                         onClick={() => setIsMobileMenuOpen(false)}
                     >
                         ×
                     </button>
 
-                    <Link
-                        to="/"
-                        className="flex items-start justify-start mt-7 gap-2 text-blue-500 transition-transform duration-300 hover:scale-105"
-                    >
-                        <Home className="w-5 h-5" />
-                    </Link>
+                    <div className='flex justify-between items-center max-w-24 mt-5'>
+                        <div>
+                            <Link
+                                to="/"
+                                className="flex items-start justify-start p-2 rounded-md shadow-md text-blue-500"
+                            >
+                                <Home className="w-5 h-5" />
+                            </Link>
+                        </div>
 
-                    <Link
-                        to="/Cart"
-                        className="flex items-start justify-start mt-5 gap-2 text-blue-500 relative transition-transform duration-300 hover:scale-105"
-                    >
-                        <ShoppingCart className="w-5 h-5" />
-                        {cartItems.length > 0 && (
-                            <span className="absolute top-0 right-[-10px] bg-red-500 text-white text-xs rounded-full px-2 py-0.5">{cartItems.length}</span>
-                        )}
-                    </Link>
+                        <div>
+                            <Link
+                                to="/Cart"
+                                className="flex items-start justify-start rounded-md p-2 shadow-md text-blue-500 relative"
+                            >
+                                <ShoppingCart className="w-5 h-5" />
+                                {cartItems.length > 0 && (
+                                    <span className="absolute top-0 right-[-10px] bg-red-500 text-white text-xs rounded-full px-1">{cartItems.length}</span>
+                                )}
+                            </Link>
+                        </div>
+                    </div>
 
                     <div className="flex flex-col gap-3 mt-5">
                         <Link
                             to="/Electronics"
-                            className="text-gray-700 hover:text-blue-500 transition-transform duration-300 hover:scale-105"
+                            className="text-gray-700 text-base"
                         >
                             کالای دیجیتال
                         </Link>
                         <Link
                             to="/CarsAndMotorcycles"
-                            className="text-gray-700 hover:text-blue-500 transition-transform duration-300 hover:scale-105"
+                            className="text-gray-700 text-base"
                         >
                             خودرو و موتورسیکلت
                         </Link>
                         <Link
                             to="/AudioVideo"
-                            className="text-gray-700 hover:text-blue-500 transition-transform duration-300 hover:scale-105"
+                            className="text-gray-700 text-base"
                         >
                             صوتی و تصویری
                         </Link>
                         <Link
                             to="/Stationery"
-                            className="text-gray-700 hover:text-blue-500 transition-transform duration-300 hover:scale-105"
+                            className="text-gray-700 text-base"
                         >
                             لوازم تحریر
                         </Link>
