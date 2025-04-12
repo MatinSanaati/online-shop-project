@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from "react-router-dom";
 
 // Import Components
 import { HomePage } from "./components/pages/Home-Page";
@@ -96,6 +96,16 @@ const AppContent = ({
   setSearchQuery,
 }) => {
   const location = useLocation();
+  const navigate = useNavigate();
+
+  // ریدایرکت به home اگر کاربر صفحه رو رفرش کرده باشه
+  useEffect(() => {
+    const isReload = performance.navigation.type === 1;
+    if (isReload && location.pathname !== "/") {
+      navigate("/", { replace: true });
+    }
+  }, []);
+
   const showHeader = location.pathname === "/" || location.pathname === "/Cart"; // ✅ اصلاح شرط
 
   return (
