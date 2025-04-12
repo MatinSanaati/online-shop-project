@@ -57,13 +57,13 @@ export const CarsAndMotorcycles = () => {
 
             <button
                 onClick={() => navigate("/")}
-                className="bg-blue-500 absolute left-10 top-[40%] -translate-y-1/2 text-white p-3 rounded-full shadow-md 
+                className="bg-blue-500 absolute left-10 top-[10%] -translate-y-1/2 text-white p-3 rounded-full shadow-md 
                 ... transition-all duration-300 group md:hover:bg-blue-600"
             >
                 <FaArrowLeft size={20} className="transition-transform duration-300" />
             </button>
 
-            <h1 className="text-black text-xl font-bold tracking-wide mt-52 text-right border-b-2 border-gray-300 pb-2 w-fit">
+            <h1 className="text-black text-xl font-bold tracking-wide text-right border-b-2 border-gray-300 pb-2 w-fit">
                 خودرو و موتور سیکلت
             </h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-5 gap-6 w-full max-w-8xl">
