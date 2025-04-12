@@ -66,34 +66,45 @@ export const LoginForm = () => {
         }
     };
 
+    const playVibrateAndShake = (inputType) => {
+        if (navigator.vibrate) {
+            navigator.vibrate(1000); // ویبره 1000 میلی‌ثانیه‌ای
+        }
+
+        if (inputType === "name") {
+            setShakeName(true);
+            setTimeout(() => setShakeName(false),1000);
+        } else if (inputType === "phone") {
+            setShakePhone(true);
+            setTimeout(() => setShakePhone(false), 1000);
+        }
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
         const isNameEmpty = fullName.trim() === "";
         const isPhoneEmpty = phone.trim() === "";
 
-        // استفاده از همون شروطی که توی handleChange استفاده کردیم
         const words = fullName.trim().split(/\s+/);
         const isFullNameValid = words.length >= 2 && words.every(w => w.length >= 3);
         const isPhoneValid = /^09\d{9}$/.test(phone.trim());
 
         const newErrors = [];
 
+        // استفاده از همون شروطی که توی handleChange استفاده کردیم
         if (isNameEmpty || isPhoneEmpty) {
             setShowRequiredWarning(true);
 
-            // 👇 اضافه کردن ویبره
             if (navigator.vibrate) {
-                navigator.vibrate(1000); // یا [100, 50, 100] برای ویبره چند مرحله‌ای
+                navigator.vibrate(1000); // ویبره برای خطای ورودی
             }
 
             if (isNameEmpty) {
-                setShakeName(true);
-                setTimeout(() => setShakeName(false), 500);
+                playVibrateAndShake("name");
             }
             if (isPhoneEmpty) {
-                setShakePhone(true);
-                setTimeout(() => setShakePhone(false), 500);
+                playVibrateAndShake("phone");
             }
 
             setTimeout(() => setShowRequiredWarning(false), 3000);
@@ -102,14 +113,12 @@ export const LoginForm = () => {
 
         if (!isFullNameValid) {
             newErrors.push("نام کامل باید حداقل شامل دو کلمه با حداقل ۳ حرف باشه");
-            setShakeName(true);
-            setTimeout(() => setShakeName(false), 500);
+            playVibrateAndShake("name");
         }
 
         if (!isPhoneValid) {
             newErrors.push("شماره تلفن باید با 09 شروع بشه و ۱۱ رقم باشه");
-            setShakePhone(true);
-            setTimeout(() => setShakePhone(false), 500);
+            playVibrateAndShake("phone");
         }
 
         if (newErrors.length > 0) {
@@ -130,13 +139,11 @@ export const LoginForm = () => {
     return (
         <div>
             <div>
-
                 {showRequiredWarning && <RequiredFieldsWarning />}
-
                 {/* Error Messages Display */}
                 <ErrorMessages errors={errors} />
-
             </div>
+
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -209,7 +216,6 @@ export const LoginForm = () => {
                                 >
                                     {isRegister ? "ثبت‌ نام" : "ورود"}
                                 </button>
-
                             </form>
 
                             <p className="text-white text-center mt-6 text-sm">
