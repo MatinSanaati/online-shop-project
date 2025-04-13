@@ -1,40 +1,50 @@
-// Styles
 import '../../styles/Login-Form/Login-Form.css';
-
-// Import--Reacts
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
-
-// Import--Components
 import { ErrorMessages } from './Login-Form-Error-Messages/Error-Messages';
 import { RequiredFieldsWarning } from './Required-Fields-Warning/Required-Fields-Warning';
 
 export const LoginForm = () => {
+    const [registerPhoneValid, setRegisterPhoneValid] = useState(null);
+    const [loginPhoneValid, setLoginPhoneValid] = useState(null);
     const [isVisible, setIsVisible] = useState(false);
     const [isRegister, setIsRegister] = useState(false);
     const [fullName, setFullName] = useState("");
     const [fullNameValid, setFullNameValid] = useState(null);
-    const [phone, setPhone] = useState("");
-    const [phoneValid, setPhoneValid] = useState(null);
+    const [registerPhone, setRegisterPhone] = useState("");
+    const [loginPhone, setLoginPhone] = useState("");
     const [errors, setErrors] = useState([]);
     const [showRequiredWarning, setShowRequiredWarning] = useState(false);
     const [shakeName, setShakeName] = useState(false);
     const [shakePhone, setShakePhone] = useState(false);
 
-    // fullName input class with conditional styling
+    const isPersian = (text) => {
+        return /^[\u0600-\u06FF\s]+$/.test(text); // بررسی اینکه فقط فارسی تایپ شده
+    };
+
     const fullNameInputClass = `
     w-full px-4 py-2 bg-white/20 backdrop-blur-md border-none outline-none rounded-xl text-white placeholder-gray-300
     ${fullNameValid === false ? "ring-2 ring-red-400" :
             fullNameValid === true ? "ring-2 ring-green-400" : "focus:ring-2 focus:ring-blue-300"}
     ${shakeName ? "shake" : ""}
+    ${isPersian(fullName) ? "text-right" : "text-left"}
 `;
 
     const phoneInputClass = `
-    w-full px-4 py-2 bg-white/20 backdrop-blur-md border-none outline-none rounded-xl text-white placeholder-gray-300
-    ${phoneValid === false ? "ring-2 ring-red-400" :
-            phoneValid === true ? "ring-2 ring-green-400" : "focus:ring-2 focus:ring-blue-300"}
-    ${shakePhone ? "shake" : ""}
-`;
+        w-full px-4 py-2 bg-white/20 backdrop-blur-md border-none outline-none rounded-xl text-white placeholder-gray-300
+        ${isRegister
+            ? registerPhoneValid === false
+                ? "ring-2 ring-red-400"
+                : registerPhoneValid === true
+                    ? "ring-2 ring-green-400"
+                    : "focus:ring-2 focus:ring-blue-300"
+            : loginPhoneValid === false
+                ? "ring-2 ring-red-400"
+                : loginPhoneValid === true
+                    ? "ring-2 ring-green-400"
+                    : "focus:ring-2 focus:ring-blue-300"}
+        ${shakePhone ? "shake" : ""}
+    `;
 
     useEffect(() => {
         const timer = setTimeout(() => setIsVisible(true), 300);
@@ -49,31 +59,41 @@ export const LoginForm = () => {
             setFullNameValid(null);
         } else {
             const words = value.trim().split(/\s+/);
-            const isValid = words.length >= 2 && words.every(w => w.length >= 3); // 👈 شرط اصلی
+            const isValid = words.length >= 2 && words.every(w => w.length >= 3);
             setFullNameValid(isValid);
         }
     };
 
     const handlePhoneChange = (e) => {
         const value = e.target.value;
-        setPhone(value);
 
-        if (value.trim() === "") {
-            setPhoneValid(null);
+        if (isRegister) {
+            setRegisterPhone(value);
+            if (value.trim() === "") {
+                setRegisterPhoneValid(null);
+            } else {
+                const isValid = /^09\d{9}$/.test(value.trim());
+                setRegisterPhoneValid(isValid);
+            }
         } else {
-            const isValid = /^09\d{9}$/.test(value.trim()); // 👈 چک دقیق
-            setPhoneValid(isValid);
+            setLoginPhone(value);
+            if (value.trim() === "") {
+                setLoginPhoneValid(null);
+            } else {
+                const isValid = /^09\d{9}$/.test(value.trim());
+                setLoginPhoneValid(isValid);
+            }
         }
     };
 
     const playVibrateAndShake = (inputType) => {
         if (navigator.vibrate) {
-            navigator.vibrate(1000); // ویبره 1000 میلی‌ثانیه‌ای
+            navigator.vibrate(1000);
         }
 
         if (inputType === "name") {
             setShakeName(true);
-            setTimeout(() => setShakeName(false),1000);
+            setTimeout(() => setShakeName(false), 1000);
         } else if (inputType === "phone") {
             setShakePhone(true);
             setTimeout(() => setShakePhone(false), 1000);
@@ -83,35 +103,40 @@ export const LoginForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const isNameEmpty = fullName.trim() === "";
+        const phone = isRegister ? registerPhone : loginPhone;
+        const isNameEmpty = isRegister && fullName.trim() === "";
         const isPhoneEmpty = phone.trim() === "";
 
         const words = fullName.trim().split(/\s+/);
         const isFullNameValid = words.length >= 2 && words.every(w => w.length >= 3);
         const isPhoneValid = /^09\d{9}$/.test(phone.trim());
 
-        const newErrors = [];
-
-        // استفاده از همون شروطی که توی handleChange استفاده کردیم
+        // اول بررسی خالی بودن فیلدها بدون ست کردن ولیدیشن منفی
         if (isNameEmpty || isPhoneEmpty) {
             setShowRequiredWarning(true);
+            if (isNameEmpty) playVibrateAndShake("name");
+            if (isPhoneEmpty) playVibrateAndShake("phone");
 
-            if (navigator.vibrate) {
-                navigator.vibrate(1000); // ویبره برای خطای ورودی
+            // ولیدیشن‌ها رو null نگه می‌داریم
+            if (isRegister) {
+                if (isPhoneEmpty) setRegisterPhoneValid(null);
+            } else {
+                if (isPhoneEmpty) setLoginPhoneValid(null);
             }
-
-            if (isNameEmpty) {
-                playVibrateAndShake("name");
-            }
-            if (isPhoneEmpty) {
-                playVibrateAndShake("phone");
-            }
-
             setTimeout(() => setShowRequiredWarning(false), 3000);
             return;
         }
 
-        if (!isFullNameValid) {
+        // در اینجا فقط اگر فیلد پر بود و نامعتبر بود، ست کنیم false
+        if (isRegister) {
+            setRegisterPhoneValid(isPhoneValid);
+        } else {
+            setLoginPhoneValid(isPhoneValid);
+        }
+
+        const newErrors = [];
+
+        if (isRegister && !isFullNameValid) {
             newErrors.push("نام کامل باید حداقل شامل دو کلمه با حداقل ۳ حرف باشه");
             playVibrateAndShake("name");
         }
@@ -126,7 +151,7 @@ export const LoginForm = () => {
             setTimeout(() => setErrors([]), 5000);
         } else {
             setErrors([]);
-            console.log("ثبت‌نام موفقیت‌آمیز بود ✅");
+            console.log(`${isRegister ? "ثبت‌نام" : "ورود"} موفقیت‌آمیز بود ✅`);
         }
     };
 
@@ -138,11 +163,8 @@ export const LoginForm = () => {
 
     return (
         <div>
-            <div>
-                {showRequiredWarning && <RequiredFieldsWarning />}
-                {/* Error Messages Display */}
-                <ErrorMessages errors={errors} />
-            </div>
+            {showRequiredWarning && <RequiredFieldsWarning />}
+            <ErrorMessages errors={errors} />
 
             <motion.div
                 initial={{ opacity: 0 }}
@@ -177,7 +199,7 @@ export const LoginForm = () => {
                                             placeholder="نام و نام خانوادگی . . ."
                                         />
                                         {fullNameValid === false && fullName !== "" && (
-                                            <p className="warning_text text-sm text-red-300 mt-1 text-center">
+                                            <p className="text-sm text-red-300 mt-1 text-center">
                                                 نام کاربری معتبر نیست 😑
                                             </p>
                                         )}
@@ -193,17 +215,17 @@ export const LoginForm = () => {
                                     <label className="block text-white font-medium mb-1">شماره تلفن</label>
                                     <input
                                         type="tel"
-                                        value={phone}
+                                        value={isRegister ? registerPhone : loginPhone}
                                         onChange={handlePhoneChange}
                                         className={phoneInputClass}
                                         placeholder="09XXXXXXXXX"
                                     />
-                                    {phoneValid === false && phone !== "" && (
-                                        <p className="warning_text text-sm text-red-300 mt-1 text-center">
+                                    {(isRegister ? registerPhoneValid : loginPhoneValid) === false && (
+                                        <p className="text-sm text-red-300 mt-1 text-center">
                                             شماره تلفن معتبر نیست 😑
                                         </p>
                                     )}
-                                    {phoneValid === true && phone !== "" && (
+                                    {(isRegister ? registerPhoneValid : loginPhoneValid) === true && (
                                         <p className="text-sm text-green-300 mt-1 text-center">
                                             شماره تلفن معتبر است 😊
                                         </p>
