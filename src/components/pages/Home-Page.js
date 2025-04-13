@@ -85,12 +85,13 @@ export const HomePage = ({ isSearching, searchFinished, searchQuery }) => {
                         viewport={{ once: false, amount: 0.2 }}
                     >
                         <div className="section__product_list w-full mx-auto overflow-x-auto h-auto mt-40 rounded-lg cursor-grab">
-                            <div className='h3_parent mb-4 text-3xl text-center font-bold'>
-                                <h3>محصولات</h3>
+                            {/* محصولات */}
+                            <div className="flex-1 bg-white/10 backdrop-blur-md p-6">
+                                <h3 className="text-2xl font-bold text-center text-black mb-6">محصولات</h3>
+                                <Draggable>
+                                    <ProductList />
+                                </Draggable>
                             </div>
-                            <Draggable>
-                                <ProductList />
-                            </Draggable>
                         </div>
                     </motion.div>
 
@@ -100,7 +101,9 @@ export const HomePage = ({ isSearching, searchFinished, searchQuery }) => {
                         transition={{ duration: 0.5, delay: 0.5 }}
                         viewport={{ once: false, amount: 0.2 }}
                     >
-                        <div className="shopping_by_category text-lg text-center mt-12 font-bold text-gray-800">
+                        {/* خرید بر اساس دسته‌بندی */}
+                        <div className="flex-1 bg-white/10 backdrop-blur-md p-6">
+                            <h3 className="text-2xl font-bold text-center text-white mb-6">خرید بر اساس دسته‌بندی</h3>
                             <ShoppingByCategory />
                         </div>
                     </motion.h2>

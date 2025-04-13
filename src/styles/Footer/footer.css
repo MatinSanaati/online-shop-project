@@ -1,0 +1,26 @@
+@media only screen and (max-width: 768px) {
+    .footer {
+        padding: 20px 0;
+    }
+
+    .section_links,
+    .section_social {
+        margin-top: 2.5rem;
+    }
+}
+
+@media only screen and (max-width: 360px) {
+    .footer {
+        padding: 7px 0;
+    }
+
+    .section_links {
+        margin-top: 2rem;
+        font-size: .8rem;
+    }
+    
+    .section_social {
+        margin-top: 2rem;
+        font-size: 1rem;
+    }
+}

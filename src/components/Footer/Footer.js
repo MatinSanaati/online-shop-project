@@ -1,5 +1,5 @@
 // Style
-import '../../styles/Footer/footer.css';
+import '../../styles//Footer/footer.css';
 
 // React--Imports
 import { FaInstagram, FaLinkedin, FaWhatsapp, FaTelegram } from "react-icons/fa";
@@ -27,7 +27,7 @@ export const Footer = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
-                    className="flex space-x-6 text-sm mt-4 gap-3 md:mt-0"
+                    className="section_links flex text-sm mt-4 gap-5 md:mt-0"
                 >
                     <li className="hover:text-blue-400 transition-all duration-300 cursor-pointer">Contact</li>
                     <li className="hover:text-blue-400 transition-all duration-300 cursor-pointer">Services</li>
@@ -40,7 +40,7 @@ export const Footer = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.7, delay: 0.4 }}
-                    className="flex space-x-5 mt-4 md:mt-0 text-xl"
+                    className="section_social flex justify-between items-center gap-5 mt-4 md:mt-0 text-xl"
                 >
                     <FaLinkedin className="cursor-pointer hover:text-blue-700 transition-colors duration-300" title="LinkedIn" />
                     <FaInstagram className="cursor-pointer hover:text-pink-500 transition-colors duration-300" title="Instagram" />
