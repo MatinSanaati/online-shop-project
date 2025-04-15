@@ -6,6 +6,17 @@ import { FaArrowLeft } from "react-icons/fa";
 import { products } from "../../components/Products-Component/Products-component";
 import { SuccessMessage } from "../../components/Components-Hover-Nav/Success-Message/Success-Message";
 
+// اعداد فارسی
+const toPersianDigits = (num) => {
+    return num.toString().replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+};
+
+// قیمت سه‌رقمی
+const formatPrice = (num) => {
+    if (typeof num !== "number") return num;
+    return num.toLocaleString("fa-IR").replace(/٬/g, "٬");
+};
+
 export const CarsAndMotorcycles = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState({});
@@ -16,31 +27,21 @@ export const CarsAndMotorcycles = () => {
             .includes(product.category)
     );
 
-    const handleAddToCart = (productId) => {
-        setLoading((prev) => ({ ...prev, [productId]: true }));
+    const handleAddToCart = (product) => {
+        setLoading((prev) => ({ ...prev, [product.id]: true }));
 
         setTimeout(() => {
-            setLoading((prev) => ({ ...prev, [productId]: false }));
-            setShowMessage(true);
+            setLoading((prev) => ({ ...prev, [product.id]: false }));
 
-            // دریافت سبد خرید قبلی از localStorage
             const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
 
-            // پیدا کردن محصولی که کلیک شده
-            const selectedProduct = products.find((p) => p.id === productId);
+            // مستقیماً از خود product استفاده کن
+            const updatedCart = [...existingCart, product];
+            localStorage.setItem("cart", JSON.stringify(updatedCart));
+            window.dispatchEvent(new Event("storage"));
 
-            if (selectedProduct) {
-                // اضافه کردن محصول به آرایه‌ی cart
-                const updatedCart = [...existingCart, selectedProduct];
-                localStorage.setItem("cart", JSON.stringify(updatedCart));
-
-                // **ایجاد رویداد برای اطلاع‌رسانی به سبد خرید**
-                window.dispatchEvent(new Event("storage"));
-            }
-
-            setTimeout(() => {
-                setShowMessage(false);
-            }, 3000);
+            setShowMessage(true);
+            setTimeout(() => setShowMessage(false), 5000);
         }, 3000);
     };
 
@@ -77,19 +78,31 @@ export const CarsAndMotorcycles = () => {
                         <div className="flex justify-between items-center w-full mt-5">
                             <div>
                                 {product.discount > 0 && (
-                                    <span className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-lg">
-                                        {product.discount}%
+                                    <span className="bg-red-500 text-white text-xs font-bold px-1 rounded-lg">
+                                        {toPersianDigits(product.discount)}٪
                                     </span>
                                 )}
                             </div>
-                            <div className="flex justify-between w-20 self-end text-center">
-                                <p className="text-red-500 line-through text-sm">{product.originalPrice}</p>
-                                <p className="text-green-400 mt-1 text-lg font-semibold">{product.price}</p>
+                            <div className="flex flex-col items-center justify-between ml-1 self-end text-center">
+                                <div className="flex justify-between items-center">
+                                    <div className="ml-2">
+                                        <p className="text-green-400 mt-1 text-lg font-semibold">{formatPrice(product.price)}</p>
+                                    </div>
+                                    <div className="text-black flex flex-col">
+                                        <div className="flex justify-end">
+                                            <p>ن</p>
+                                        </div>
+                                        <div>
+                                            <p>توما</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p className="text-red-400 line-through ml-12 text-xs">{formatPrice(product.originalPrice)}</p>
                             </div>
                         </div>
                         <div className="mt-5">
                             <button
-                                onClick={() => handleAddToCart(product.id)}
+                                onClick={() => handleAddToCart(product)}
                                 className="bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-200 flex items-center justify-center w-40 h-10"
                                 disabled={loading[product.id]}
                             >
