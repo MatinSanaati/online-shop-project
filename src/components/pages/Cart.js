@@ -12,6 +12,8 @@ import { CartTotal } from '../Cart-Total/Cart-Total';
 
 export const Cart = () => {
     const [cartItems, setCartItems] = useState([]);
+    // استیت لودینگ
+    const [loadingItems, setLoadingItems] = useState({});
 
     useEffect(() => {
         const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -31,13 +33,20 @@ export const Cart = () => {
     }, []);
 
     const updateQuantity = (productId, change) => {
-        const updatedCart = cartItems.map(item =>
-            item.id === productId
-                ? { ...item, quantity: Math.max(1, (item.quantity || 1) + change) }
-                : item
-        );
-        setCartItems(updatedCart);
-        localStorage.setItem("cart", JSON.stringify(updatedCart));
+        setLoadingItems((prev) => ({ ...prev, [productId]: true }));
+
+        setTimeout(() => {
+            const updatedCart = cartItems.map(item =>
+                item.id === productId
+                    ? { ...item, quantity: Math.max(1, (item.quantity || 1) + change) }
+                    : item
+            );
+
+            setCartItems(updatedCart);
+            localStorage.setItem("cart", JSON.stringify(updatedCart));
+
+            setLoadingItems((prev) => ({ ...prev, [productId]: false }));
+        }, 2000);
     };
 
     const removeItem = (productId) => {
@@ -54,7 +63,7 @@ export const Cart = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
                     {/* لیست محصولات */}
-                    <div className="md:col-span-2 flex flex-col gap-6">
+                    <div className="md:col-span-2 flex justify-between flex-col gap-6">
                         {cartItems.map((item, index) => (
                             <motion.div
                                 key={index}
@@ -69,13 +78,24 @@ export const Cart = () => {
                                 />
 
                                 <div className='cart_item--info--action flex justify-between items-center gap-4'>
-                                    <div className="flex-1 text-center md:text-right">
-                                        <h2 className="text-lg font-semibold text-gray-800">{item.name}</h2>
-                                        <p className="text-gray-500 text-sm mt-1">{item.price}</p>
+                                    <div className="flex justify-between items-center flex-col gap-1 mt-2">
+                                        <div>
+                                            <p className="font-bold text-gray-800">{item.name}</p>
+                                        </div>
+                                        <div className='mt-2'>
+                                            <p className="text-green-500 font-semibold">
+                                                {item.discountedPrice?.toLocaleString("fa-IR")} تومان
+                                            </p>
+                                            {item.originalPrice && item.discountedPrice && item.originalPrice !== item.discountedPrice && (
+                                                <p className="text-red-400 text-xs line-through">
+                                                    {item.originalPrice.toLocaleString("fa-IR")} تومان
+                                                </p>
+                                            )}
+                                        </div>
                                     </div>
 
                                     {/* Btns */}
-                                    <div className="flex items-center gap-2">
+                                    <div className="flex justify-between items-center mt-2 gap-2">
                                         {item.quantity > 1 ? (
                                             <button
                                                 onClick={() => updateQuantity(item.id, -1)}
@@ -92,7 +112,13 @@ export const Cart = () => {
                                             </button>
                                         )}
 
-                                        <span className="text-lg font-semibold w-6 text-center">{item.quantity || 1}</span>
+                                        <span className="text-lg font-semibold w-6 text-center">
+                                            {loadingItems[item.id] ? (
+                                                <div className="w-4 h-4 border-2 border-blue-500 border-t-transparent border-solid rounded-full animate-spin mx-auto"></div>
+                                            ) : (
+                                                item.quantity || 1
+                                            )}
+                                        </span>
 
                                         <button
                                             onClick={() => updateQuantity(item.id, 1)}

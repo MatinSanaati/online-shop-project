@@ -1,30 +1,30 @@
 // Imports--React
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
-import { FaArrowLeft } from "react-icons/fa";
+import React, { useState } from "react"; // React و hook برای state
+import { motion } from "framer-motion"; // انیمیشن دادن به اجزا
+import { useNavigate } from "react-router-dom"; // برای ناوبری بین صفحات
+import { FaArrowLeft } from "react-icons/fa"; // آیکون فلش برگشت
 
 // Components
-import { products } from "../../components/Products-Component/Products-component";
-import { SuccessMessage } from "../../components/Components-Hover-Nav/Success-Message/Success-Message";
+import { products } from "../../components/Products-Component/Products-component"; // لیست همه‌ی محصولات
+import { SuccessMessage } from "../../components/Components-Hover-Nav/Success-Message/Success-Message"; // کامپوننت پیام موفقیت بعد از افزودن به سبد
 
-// اعداد فارسی
+// تبدیل اعداد انگلیسی به فارسی
 const toPersianDigits = (num) => {
     return num.toString().replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
 };
 
-// قیمت سه‌رقمی
+// فرمت کردن قیمت به صورت سه رقمی
 const formatPrice = (num) => {
     if (typeof num !== "number") return num;
     return num.toLocaleString("fa-IR").replace(/٬/g, "٬");
 };
 
 export const Electronics = () => {
-    const navigate = useNavigate();
-    const [loading, setLoading] = useState({});
-    const [showMessage, setShowMessage] = useState(false);
+    const navigate = useNavigate(); // برای تغییر مسیر از طریق کد
+    const [loading, setLoading] = useState({}); // مدیریت لود شدن هر دکمه
+    const [showMessage, setShowMessage] = useState(false); // کنترل نمایش پیام موفقیت
 
-    // دسته‌بندی مورد نظر برای فیلتر
+    // دسته‌بندی‌های مربوط به لوازم دیجیتال
     const categoryList = [
         "لپ‌تاپ",
         "قطعات کامپیوتر",
@@ -36,7 +36,7 @@ export const Electronics = () => {
         "لوازم جانبی تبلت"
     ];
 
-    // فیلتر محصولات بر اساس دسته‌بندی
+    // فیلتر کردن محصولات بر اساس دسته‌بندی و محاسبه تخفیف
     const filteredProducts = products
         .filter(product => categoryList.includes(product.category))
         .map(product => {
@@ -45,22 +45,45 @@ export const Electronics = () => {
             return { ...product, discount, discountedPrice };
         });
 
+    // هندل کردن افزودن به سبد خرید
     const handleAddToCart = (product) => {
-        setLoading((prev) => ({ ...prev, [product.id]: true }));
+        setLoading((prev) => ({ ...prev, [product.id]: true })); // فعال‌سازی لود
 
         setTimeout(() => {
-            setLoading((prev) => ({ ...prev, [product.id]: false }));
+            setLoading((prev) => ({ ...prev, [product.id]: false })); // غیر فعال‌سازی لود
 
-            const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
-            const updatedCart = [...existingCart, product];
-            localStorage.setItem("cart", JSON.stringify(updatedCart));
-            window.dispatchEvent(new Event("storage"));
+            const existingCart = JSON.parse(localStorage.getItem("cart")) || []; // خواندن سبد قبلی
 
-            setShowMessage(true);
-            setTimeout(() => setShowMessage(false), 5000);
+            // چک کنیم محصول قبلاً توی سبد هست یا نه
+            const existingItem = existingCart.find(item => item.id === product.id);
+
+            let updatedCart;
+            if (existingItem) {
+                // اگر هست، فقط تعدادش رو زیاد کن
+                updatedCart = existingCart.map(item =>
+                    item.id === product.id
+                        ? { ...item, quantity: (item.quantity || 1) + 1 }
+                        : item
+                );
+            } else {
+                // اگه نیست، محصول جدید رو با مقدار اولیه اضافه کن
+                const newItem = {
+                    ...product,
+                    quantity: 1,
+                    discountedPrice: Math.round(product.originalPrice - (product.originalPrice * product.discount) / 100)
+                };
+                updatedCart = [...existingCart, newItem];
+            }
+
+            localStorage.setItem("cart", JSON.stringify(updatedCart)); // ذخیره‌سازی سبد جدید
+            window.dispatchEvent(new Event("storage")); // آپدیت شدن سبد در کل برنامه
+
+            setShowMessage(true); // نمایش پیام موفقیت
+            setTimeout(() => setShowMessage(false), 5000); // بستن پیام بعد از ۵ ثانیه
         }, 3000);
     };
 
+    // رندر کامپوننت
     return (
         <motion.div
             initial={{ opacity: 0, scale: .8, y: 10 }}
@@ -68,8 +91,10 @@ export const Electronics = () => {
             transition={{ duration: 2, ease: "easeOut" }}
             className="flex flex-col items-center mt-10 h-full min-h-screen"
         >
+            {/* نمایش پیام موفقیت */}
             {showMessage && <SuccessMessage show={showMessage} />}
 
+            {/* دکمه بازگشت به خانه */}
             <button
                 onClick={() => navigate("/")}
                 className="bg-blue-500 absolute left-10 top-[10%] -translate-y-1/2 text-white p-3 rounded-full shadow-md transition-all duration-300 group md:hover:bg-blue-600"
@@ -77,18 +102,25 @@ export const Electronics = () => {
                 <FaArrowLeft size={20} className="transition-transform duration-300" />
             </button>
 
+            {/* عنوان صفحه */}
             <h1 className="text-black text-xl font-bold tracking-wide text-right border-b-2 border-gray-300 pb-2 w-fit">
                 کامپیوتر و لوازم دیجیتال
             </h1>
 
+            {/* نمایش محصولات */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-5 gap-6 w-full max-w-8xl">
                 {filteredProducts.map((product, index) => (
-                    <div key={`${product.id}-${index}`} className="bg-white p-4 rounded-xl shadow-md mt-5 flex flex-col items-center 
-                    transition-transform duration-200 ease-in 
-                    md:hover:shadow-xl md:hover:scale-105"
+                    <div
+                        key={`${product.id}-${index}`}
+                        className="bg-white p-4 rounded-xl shadow-md mt-5 flex flex-col items-center transition-transform duration-200 ease-in md:hover:shadow-xl md:hover:scale-105"
                     >
+                        {/* عکس محصول */}
                         <img src={product.imageUrl} alt={product.name} className="w-full h-60 object-cover rounded-md" />
+
+                        {/* نام محصول */}
                         <h2 className="mt-2 text-lg font-semibold text-gray-800">{product.name}</h2>
+
+                        {/* قیمت و تخفیف */}
                         <div className="flex justify-between items-center w-full mt-5">
                             <div>
                                 {product.discount > 0 && (
@@ -115,6 +147,7 @@ export const Electronics = () => {
                             </div>
                         </div>
 
+                        {/* دکمه افزودن به سبد خرید */}
                         <div className="mt-5">
                             <button
                                 onClick={() => handleAddToCart(product)}

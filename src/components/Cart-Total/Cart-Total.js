@@ -31,7 +31,7 @@ export const CartTotal = ({ cartItems }) => {
                     <span className="text-green-600">{total.toLocaleString()} تومان</span>
                 </div>
 
-                <button className="btn_cart--total w-full bg-blue-500 text-white py-2 px-4 rounded-lg mt-5 hover:bg-blue-600 transition">
+                <button onClick={() => alert("🤗 هنوز طراحی نشده 🤗")} className="btn_cart--total w-full bg-blue-500 text-white py-2 px-4 rounded-lg mt-5 hover:bg-blue-600 transition">
                     🛒 ادامه به پرداخت
                 </button>
             </div>
