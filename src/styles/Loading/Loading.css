@@ -1,65 +1,124 @@
-/* تمام صفحه با پس‌زمینه تاریک */
-.loading-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+/* پس‌زمینه فضایی */
+.loading-scene {
     width: 100vw;
-    background: radial-gradient(circle, #0f172a, #0a0f1d);
+    height: 100vh;
+    background: radial-gradient(ellipse at center, #0f172a, #000);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
-}
-
-/* باکس اصلی انیمیشن */
-.neon-loader {
     position: relative;
-    width: 80px;
-    height: 80px;
 }
 
-.neon-loader span {
+/* سیاره */
+.planet-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    z-index: 10;
+}
+
+.planet {
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, #3b82f6, #1e40af);
+    border-radius: 50%;
+    box-shadow: 0 0 30px #3b82f6cc;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+    animation: glowPlanet 2s ease-in-out infinite;
+}
+
+/* هاله پالس اطراف سیاره */
+.pulse-glow {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: rgba(59, 130, 246, 0.3);
+    animation: pulseGlow 2.5s ease-in-out infinite;
+    z-index: 1;
+}
+
+/* حلقه‌ها */
+.ring {
+    position: absolute;
+    border: 3px solid transparent;
+    border-top: 3px solid #22d3ee;
+    border-radius: 50%;
+    animation: rotateRing 2s linear infinite;
+}
+
+.ring1 {
+    width: 130px;
+    height: 130px;
+    top: -5px;
+    left: -5px;
+    border-top-color: #22d3ee;
+    animation-delay: 0s;
+}
+
+.ring2 {
+    width: 160px;
+    height: 160px;
+    top: -20px;
+    left: -20px;
+    border-top-color: #10b981;
+    animation-delay: 0.3s;
+}
+
+/* ستاره‌ها */
+.stars {
     position: absolute;
     width: 100%;
     height: 100%;
-    border: 6px solid transparent;
-    border-top-color: #3b82f6;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
     border-radius: 50%;
-    animation: neon-spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    box-shadow: 0 0 12px #3b82f6, 0 0 24px #3b82f6aa, 0 0 36px #3b82f688;
+    animation: twinkle 3s infinite;
+    top: calc(100% * var(--top));
+    left: calc(100% * var(--left));
+    opacity: 0.6;
 }
 
-/* تاخیر برای افکت چندلایه */
-.neon-loader span:nth-child(2) {
-    animation-delay: 0.2s;
-    border-top-color: #6366f1;
-    box-shadow: 0 0 12px #6366f1, 0 0 24px #6366f1aa, 0 0 36px #6366f188;
+/* انیمیشن‌ها */
+@keyframes glowPlanet {
+    0%, 100% { box-shadow: 0 0 20px #3b82f688; }
+    50% { box-shadow: 0 0 40px #3b82f6cc; }
 }
 
-.neon-loader span:nth-child(3) {
-    animation-delay: 0.4s;
-    border-top-color: #22d3ee;
-    box-shadow: 0 0 12px #22d3ee, 0 0 24px #22d3eeaa, 0 0 36px #22d3ee88;
-}
-
-.neon-loader span:nth-child(4) {
-    animation-delay: 0.6s;
-    border-top-color: #10b981;
-    box-shadow: 0 0 12px #10b981, 0 0 24px #10b981aa, 0 0 36px #10b98188;
-}
-
-/* چرخش انفجاری با مکث نرم */
-@keyframes neon-spin {
+@keyframes pulseGlow {
     0% {
-        transform: rotate(0deg) scale(1);
-        opacity: 1;
+        transform: scale(1);
+        opacity: 0.4;
     }
-
     50% {
-        transform: rotate(720deg) scale(1.2);
-        opacity: 0.6;
+        transform: scale(1.4);
+        opacity: 0;
     }
-
     100% {
-        transform: rotate(1440deg) scale(1);
-        opacity: 1;
+        transform: scale(1);
+        opacity: 0.4;
     }
+}
+
+@keyframes rotateRing {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(720deg); }
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 1; }
 }
