@@ -74,26 +74,29 @@ export const CarsAndMotorcycles = () => {
     // خروجی JSX
     return (
         <motion.div
-            initial={{ opacity: 0, scale: .8, y: 10 }} // انیمیشن شروع
-            animate={{ opacity: 1, scale: 1, y: 0 }} // انیمیشن هنگام نمایش
-            transition={{ duration: 2, ease: "easeOut" }} // زمان و نوع انیمیشن
+            initial={{ opacity: 0, scale: .8, }} // انیمیشن شروع
+            animate={{ opacity: 1, scale: 1 }} // انیمیشن هنگام نمایش
+            transition={{ duration: 1.5, ease: "easeInOut" }} // زمان و نوع انیمیشن
             className="flex flex-col items-center mt-10 h-full min-h-screen" // استایل صفحه
         >
             {/* نمایش پیام موفقیت در صورت نیاز */}
             {showMessage && <SuccessMessage show={showMessage} />}
 
-            {/* دکمه بازگشت */}
-            <button
-                onClick={() => navigate("/")} // بازگشت به صفحه اصلی
-                className="bg-blue-500 absolute left-10 top-[10%] -translate-y-1/2 text-white p-3 rounded-full shadow-md transition-all duration-300 group md:hover:bg-blue-600"
-            >
-                <FaArrowLeft size={20} className="transition-transform duration-300" />
-            </button>
+            {/* بخش بالای صفحه */}
+            <div className="flex justify-between items-center z-50 bg-slate-200 border-b-2 border-slate-300 fixed top-0 left-0 right-0 w-full h-20">
+                {/* دکمه بازگشت */}
+                <button
+                    onClick={() => navigate("/")} // بازگشت به صفحه اصلی
+                    className="bg-blue-500 absolute left-10 text-white p-3 rounded-full shadow-md transition-all duration-300 group md:hover:bg-blue-600"
+                >
+                    <FaArrowLeft size={20} className="transition-transform duration-300" />
+                </button>
 
-            {/* عنوان صفحه */}
-            <h1 className="text-black text-xl font-bold tracking-wide text-right border-b-2 border-gray-300 pb-2 w-fit">
-                خودرو و موتور سیکلت
-            </h1>
+                {/* عنوان صفحه */}
+                <h1 className="text-black text-xl font-bold tracking-wide mr-5 text-right pb-2 w-fit">
+                    خودرو و موتور سیکلت
+                </h1>
+            </div>
 
             {/* نمایش لیست محصولات */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-5 gap-6 w-full max-w-8xl">
